@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Socinest Global — Skills Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --rose: #C9957A;
+    --silver: #A8B4C0;
+    --offwhite: #F7F8FA;
+    --navy-light: #243560;
+    --rose-light: #e0b09a;
+    --card-bg: #ffffff;
+    --border: rgba(168,180,192,0.25);
+    --shadow: 0 4px 24px rgba(27,42,74,0.08);
+    --shadow-hover: 0 12px 40px rgba(27,42,74,0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--offwhite);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--navy);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(201,149,122,0.2);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+  .logo span { color: var(--rose); }
+  .header-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #2d4a7a 100%);
+    padding: 72px 48px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,149,122,0.12) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,149,122,0.08) 0%, transparent 70%);
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: rgba(201,149,122,0.12);
+    border: 1px solid rgba(201,149,122,0.3);
+    padding: 6px 16px;
+    border-radius: 40px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--silver);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  /* ── SEARCH & FILTER ── */
+  .controls {
+    padding: 36px 48px 0;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+    max-width: 420px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--silver);
+  }
+  .search-input {
+    width: 100%;
+    padding: 13px 16px 13px 46px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-input:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(201,149,122,0.12);
+  }
+  .filter-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .filter-btn:hover { border-color: var(--rose); color: var(--rose); }
+  .filter-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    padding: 32px 48px 64px;
+  }
+
+  /* ── SKILL CARD ── */
+  .skill-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--rose);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .skill-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(201,149,122,0.3);
+    transform: translateY(-2px);
+  }
+  .skill-card:hover::before { transform: scaleX(1); }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .card-category {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #5a6a82;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--offwhite);
+    color: var(--navy);
+    border: 1px solid var(--border);
+  }
+  .card-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-generate {
+    flex: 1;
+    padding: 11px 16px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .btn-generate:hover { background: var(--navy-light); }
+  .btn-extract {
+    padding: 11px 16px;
+    background: transparent;
+    color: var(--rose);
+    border: 1.5px solid var(--rose);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .btn-extract:hover { background: var(--rose); color: #fff; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(27,42,74,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 780px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(27,42,74,0.25);
+    animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-header {
+    background: var(--navy);
+    padding: 28px 32px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-header-left h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .modal-header-left p {
+    font-size: 12px;
+    color: var(--silver);
+    margin-top: 4px;
+    font-weight: 300;
+  }
+  .modal-close {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.2); }
+  .modal-body { padding: 32px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--offwhite);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #7a8da0;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: #fff;
+    color: var(--navy);
+    box-shadow: 0 2px 8px rgba(27,42,74,0.1);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Prompt builder */
+  .prompt-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .form-row.full { grid-template-columns: 1fr; }
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: var(--navy);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--rose); }
+
+  .prompt-output-wrap {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+  }
+  .prompt-output-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+  .prompt-output {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: #d4e0f0;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--rose);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: var(--rose-light); }
+  .copy-btn.copied { background: #3d8b5e; }
+
+  .btn-build-prompt {
+    width: 100%;
+    padding: 14px;
+    background: var(--rose);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .btn-build-prompt:hover { background: #b8805f; }
+
+  /* Framework extract */
+  .framework-block {
+    background: var(--offwhite);
+    border-left: 3px solid var(--rose);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .framework-block h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .framework-block p {
+    font-size: 13px;
+    color: #5a6a82;
+    line-height: 1.6;
+  }
+  .framework-block ul {
+    margin: 8px 0 0 16px;
+  }
+  .framework-block ul li {
+    font-size: 13px;
+    color: #5a6a82;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .extract-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .btn-copy-all {
+    flex: 1;
+    padding: 12px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-copy-all:hover { background: var(--navy-light); }
+  .btn-download {
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--rose);
+    border: 1.5px solid var(--rose);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-download:hover { background: var(--rose); color: #fff; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(27,42,74,0.25);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose); }
+
+  /* No results */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 0;
+    color: var(--silver);
+  }
+  .no-results span { font-size: 40px; display: block; margin-bottom: 14px; }
+
+  /* Category colours */
+  .cat-copy     { background: #FFF0E8; color: #B06040; }
+  .cat-social   { background: #E8F0FF; color: #3050A0; }
+  .cat-growth   { background: #E8FFF0; color: #307050; }
+  .cat-strategy { background: #F8E8FF; color: #6040A0; }
+  .cat-outreach { background: #FFF8E8; color: #A07030; }
+  .cat-seo      { background: #E8FAF0; color: #206045; }
+
+  .icon-copy     { background: #FFF0E8; }
+  .icon-social   { background: #E8F0FF; }
+  .icon-growth   { background: #E8FFF0; }
+  .icon-strategy { background: #F8E8FF; }
+  .icon-outreach { background: #FFF8E8; }
+  .icon-seo      { background: #E8F8FF; }
+  .cat-seo       { background: #E8F8FF; color: #1a6080; }
+  .icon-seo      { background: #E8FAF0; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--silver); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    header { padding: 20px 24px; }
+    .hero { padding: 48px 24px 40px; }
+    .hero h1 { font-size: 36px; }
+    .controls { padding: 24px 24px 0; }
+    .grid { padding: 24px 24px 48px; grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .modal-body { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Socinest <span>Global</span></div>
+  <div class="header-tag">Marketing Skills Library</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">✦ AI-Powered Frameworks</div>
+  <h1>Your <em>Skills</em> Library</h1>
+  <p>Professional marketing frameworks, ready to prompt. Generate client-ready copy, SEO strategies, sales sequences and audits — in one click.</p>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" type="text" id="searchInput" placeholder="Search skills…">
+  </div>
+  <div class="filter-btns">
+    <button class="filter-btn active" data-cat="all">All</button>
+    <button class="filter-btn" data-cat="copy">Copywriting</button>
+    <button class="filter-btn" data-cat="social">Social</button>
+    <button class="filter-btn" data-cat="growth">Growth</button>
+    <button class="filter-btn" data-cat="strategy">Strategy</button>
+    <button class="filter-btn" data-cat="outreach">Outreach</button>
+    <button class="filter-btn" data-cat="seo">SEO</button>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid" id="skillsGrid"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <h2 id="modalTitle">Skill Name</h2>
+        <p id="modalSubtitle">Generate a prompt or extract the framework</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('generate')">⚡ Generate Prompt</button>
+        <button class="tab-btn" onclick="switchTab('extract')">📋 Extract Framework</button>
+      </div>
+      <div class="tab-panel active" id="tab-generate">
+        <div class="prompt-section-title">Build Your Prompt</div>
+        <div id="formFields"></div>
+        <button class="btn-build-prompt" onclick="buildPrompt()">✦ Build Prompt</button>
+        <div class="prompt-output-wrap" id="promptOutputWrap" style="display:none">
+          <div class="prompt-output-label">Ready-to-Use Prompt</div>
+          <button class="copy-btn" id="copyPromptBtn" onclick="copyPrompt()">Copy</button>
+          <div class="prompt-output" id="promptOutput"></div>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-extract">
+        <div class="prompt-section-title">Core Framework</div>
+        <div id="frameworkContent"></div>
+        <div class="extract-actions">
+          <button class="btn-copy-all" onclick="copyFramework()">Copy Full Framework</button>
+          <button class="btn-download" onclick="downloadFramework()">↓ Download .txt</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  <span id="toastMsg">Copied to clipboard</span>
+</div>
+
+<script>
+const SKILLS = [
+  {
+    id: 'copy-editing',
+    title: 'Copy Editing',
+    category: 'copy',
+    icon: '✍',
+    desc: 'Systematically improve existing copy using the 7-Sweep Framework — from clarity to zero risk.',
+    tags: ['7 Sweeps', 'CRO', 'Conversions', 'Voice'],
+    fields: [
+      { id: 'clientName', label: 'Client / Brand Name', type: 'text', placeholder: 'e.g. Luna Beauty Studio' },
+      { id: 'copyType', label: 'Type of Copy', type: 'select', options: ['Landing page hero', 'Service section', 'About section', 'CTA block', 'Email subject line', 'Social bio', 'Ad copy', 'Full page'] },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. UAE women 25–45, beauty-conscious' },
+      { id: 'goal', label: 'Desired Action / Goal', type: 'text', placeholder: 'e.g. Book a consultation' },
+      { id: 'existingCopy', label: 'Paste Existing Copy Here', type: 'textarea', placeholder: 'Paste the copy you want improved…', full: true }
+    ],
+    prompt: (v) => `You are an expert copy editor. Apply the 7-Sweep Framework to improve this copy for ${v.clientName}.
+
+CLIENT: ${v.clientName}
+COPY TYPE: ${v.copyType}
+TARGET AUDIENCE: ${v.audience}
+GOAL: ${v.goal}
+
+EXISTING COPY:
+"""
+${v.existingCopy}
+"""
+
+Run all 7 sweeps in order:
+1. Clarity — fix confusing sentences, jargon, unclear structure
+2. Voice & Tone — ensure consistency with a warm, confident, results-focused brand
+3. So What — every claim must answer "why should the reader care?"
+4. Prove It — flag any unsupported assertions, suggest proof elements
+5. Specificity — replace vague language with concrete numbers, timeframes, outcomes
+6. Heightened Emotion — make pain points felt, aspirations vivid
+7. Zero Risk — remove friction near CTA, add trust signals
+
+Output: Show the improved copy, then a brief sweep-by-sweep summary of what changed and why.`,
+    framework: [
+      { title: 'Sweep 1: Clarity', body: 'Fix confusing sentences, unclear pronoun references, jargon. Every sentence must be immediately understandable.' },
+      { title: 'Sweep 2: Voice & Tone', body: 'Ensure consistent brand personality. Read aloud to hear tonal shifts. No corporate-to-casual jarring transitions.' },
+      { title: 'Sweep 3: So What', body: 'Every claim must answer "why should I care?" Add "which means…" bridges between features and benefits.' },
+      { title: 'Sweep 4: Prove It', body: 'All claims need substantiation: testimonials, stats, case study references, third-party validation.' },
+      { title: 'Sweep 5: Specificity', body: 'Replace vague words with concrete ones. "Save time" → "Save 4 hours every week". Numbers and timeframes are essential.' },
+      { title: 'Sweep 6: Heightened Emotion', body: 'Paint the "before" state vividly. Use sensory language. Reference shared experiences. Make the pain feel real.' },
+      { title: 'Sweep 7: Zero Risk', body: 'Address every objection near the CTA. Add guarantees, "cancel anytime", trust signals, and crystal-clear next steps.' }
+    ]
+  },
+  {
+    id: 'copywriting',
+    title: 'Copywriting',
+    category: 'copy',
+    icon: '✒',
+    desc: 'Write persuasive, conversion-focused copy from scratch using proven formulas — AIDA, PAS, BAB and more.',
+    tags: ['AIDA', 'PAS', 'Landing Pages', 'Headlines'],
+    fields: [
+      { id: 'brand', label: 'Brand / Business Name', type: 'text', placeholder: 'e.g. Glow Fitness UAE' },
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. 12-week transformation programme' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Busy Dubai professionals, 28–45' },
+      { id: 'copyType', label: 'Copy Type Needed', type: 'select', options: ['Hero headline + subheadline', 'Full landing page', 'Services section', 'About section', 'Email sequence (3 emails)', 'Social media bio', 'Ad copy (3 variations)', 'Sales page'] },
+      { id: 'formula', label: 'Preferred Formula', type: 'select', options: ['AIDA (Attention, Interest, Desire, Action)', 'PAS (Problem, Agitate, Solution)', 'BAB (Before, After, Bridge)', 'FAB (Features, Advantages, Benefits)', 'StoryBrand', 'Best formula for this brief'] },
+      { id: 'tone', label: 'Brand Tone', type: 'select', options: ['Warm & motivational', 'Luxury & refined', 'Bold & energetic', 'Professional & trustworthy', 'Friendly & approachable', 'Authoritative & expert'] },
+      { id: 'cta', label: 'CTA / Desired Action', type: 'text', placeholder: 'e.g. Book a free consultation' }
+    ],
+    prompt: (v) => `You are an expert conversion copywriter. Write ${v.copyType} for ${v.brand}.
+
+BRAND: ${v.brand}
+PRODUCT/SERVICE: ${v.product}
+TARGET AUDIENCE: ${v.audience}
+COPY FORMULA: ${v.formula}
+TONE: ${v.tone}
+CTA: ${v.cta}
+
+Apply these principles:
+- Lead with the reader's problem or desired outcome, never the brand
+- Use the ${v.formula} structure throughout
+- Every feature must connect to a concrete benefit
+- Include specific numbers and timeframes wherever possible
+- Make the CTA clear, low-friction, and compelling
+- Maintain ${v.tone} tone throughout
+
+Deliver the final copy ready to paste, then note 2–3 specific choices you made and why they'll convert.`,
+    framework: [
+      { title: 'AIDA Formula', body: 'Attention → Interest → Desire → Action. Hook them, build fascination, create want, make the ask.' },
+      { title: 'PAS Formula', body: 'Problem → Agitate → Solution. Name the pain, amplify it emotionally, then position your offer as the relief.' },
+      { title: 'BAB Formula', body: 'Before → After → Bridge. Show the current painful state, paint the dream outcome, explain how you get them there.' },
+      { title: 'The "So What" Test', body: 'For every claim ask "so what?" If the copy doesn\'t answer with a deeper benefit, rewrite it. Features need "which means…" bridges.' },
+      { title: 'Specificity Rule', body: '"Save time" is weak. "Save 4 hours every Monday" is compelling. Always add numbers, timeframes, and names.' },
+      { title: 'The Rule of One', body: 'One reader, one idea, one desired action. Copy that tries to do everything converts nothing.' }
+    ]
+  },
+  {
+    id: 'social-content',
+    title: 'Social Content',
+    category: 'social',
+    icon: '\uD83D\uDCF1',
+    desc: 'Create 30-day content calendars, platform strategies, content pillars and ready-to-post captions.',
+    tags: ['Instagram', 'Content Pillars', '30-Day Plan', 'Reels'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Lumina Aesthetics Clinic' },
+      { id: 'industry', label: 'Industry', type: 'select', options: ['Beauty & MUA', 'Fitness & Wellness', 'Property / Real Estate', 'Home Services', 'Facility Management', 'Call Centre / B2B', 'Coaching / Education', 'Food & Hospitality', 'E-commerce', 'Professional Services'] },
+      { id: 'platform', label: 'Primary Platform', type: 'select', options: ['Instagram', 'TikTok', 'LinkedIn', 'Facebook', 'Instagram + TikTok', 'All platforms'] },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Dubai women 25–45, luxury market' },
+      { id: 'goal', label: 'Content Goal', type: 'select', options: ['Build brand awareness', 'Generate leads & bookings', 'Grow followers', 'Establish authority', 'Drive website traffic', 'Community engagement'] },
+      { id: 'posts', label: 'Posts Per Week', type: 'select', options: ['3 posts/week', '5 posts/week', '7 posts/week (daily)', '10+ posts/week'] }
+    ],
+    prompt: (v) => `You are an expert social media strategist. Create a full content strategy for ${v.business}.
+
+BUSINESS: ${v.business}
+INDUSTRY: ${v.industry}
+PRIMARY PLATFORM: ${v.platform}
+TARGET AUDIENCE: ${v.audience}
+CONTENT GOAL: ${v.goal}
+POSTING FREQUENCY: ${v.posts}
+
+Deliver:
+1. CONTENT PILLARS — 4 pillars with % split, what each covers, and why it works for this audience
+2. 30-DAY CONTENT CALENDAR — in Notion format with these fields for each post:
+   Post number | Date (Day + Week) | Post type (Value/Proof/BTS/Offer/Engagement) | Format (Reel/Carousel/Static/Story) | Caption (full, ready-to-post) | Visual notes | 10 hashtags
+
+3. HASHTAG BANK — 20 hashtags (mix of niche, mid, broad)
+4. PLATFORM NOTES — 3 specific tips for maximising ${v.platform} for this business
+
+Make all captions ready to copy-paste. Tone: confident, warm, results-focused.`,
+    framework: [
+      { title: 'Content Pillars Formula', body: 'Build 4–5 pillars: Value (30%), Proof/Social (25%), BTS/Human (20%), Offer (15%), Engagement (10%). This ratio builds trust before selling.' },
+      { title: 'The 3-Second Hook Rule', body: 'Every Reel and carousel must stop the scroll in 3 seconds. Lead with a bold statement, a surprising stat, or a direct question.' },
+      { title: '80/20 Content Rule', body: '80% educational/entertaining, 20% promotional. Audiences follow accounts that give before they ask.' },
+      { title: 'Content Batching System', body: 'Batch by pillar, not by day. Create all Value posts together, all Proof posts together. Reduces decision fatigue, increases quality.' },
+      { title: 'Engagement Trigger Formula', body: 'End captions with a question or call-to-comment. "Save this for later" outperforms "link in bio" for reach on most platforms.' }
+    ]
+  },
+  {
+    id: 'cold-email',
+    title: 'Cold Outreach',
+    category: 'outreach',
+    icon: '\uD83D\uDCE7',
+    desc: 'Write cold emails and DM sequences that get replies — using the personalisation-first, low-friction methodology.',
+    tags: ['Cold Email', 'DM Sequences', 'Follow-ups', 'B2B'],
+    fields: [
+      { id: 'sender', label: 'Your Name / Company', type: 'text', placeholder: 'e.g. Plamena / Socinest Global' },
+      { id: 'prospect', label: 'Prospect Type', type: 'text', placeholder: 'e.g. Beauty salon owners in Dubai' },
+      { id: 'offer', label: 'What You\'re Offering', type: 'text', placeholder: 'e.g. A free landing page audit + growth call' },
+      { id: 'pain', label: 'Their #1 Pain Point', type: 'text', placeholder: 'e.g. Not getting bookings from Instagram' },
+      { id: 'channel', label: 'Outreach Channel', type: 'select', options: ['Email', 'Instagram DM', 'WhatsApp', 'LinkedIn', 'Multi-channel sequence'] },
+      { id: 'sequence', label: 'Sequence Length', type: 'select', options: ['1 message only', '3-touch sequence', '5-touch sequence (full follow-up)'] }
+    ],
+    prompt: (v) => `You are an expert cold outreach copywriter. Write a ${v.sequence} via ${v.channel} for ${v.sender}.
+
+SENDER: ${v.sender}
+PROSPECT TYPE: ${v.prospect}
+OFFER: ${v.offer}
+THEIR PAIN POINT: ${v.pain}
+CHANNEL: ${v.channel}
+
+Rules to follow:
+- Never open with "I hope this email finds you well" or introduce yourself in line 1
+- Lead with their problem or an observation about their business
+- One proof point beats ten features
+- The ask must be low-friction (a quick call, a question, a reply — not "book a 30-min demo")
+- Each follow-up adds a new angle — never "just checking in"
+- Sound like a human, not a template
+
+Deliver the full ${v.sequence} ready to send, with subject lines for email. Add a note on the personalisation angle for each message.`,
+    framework: [
+      { title: 'The Personalisation-First Rule', body: 'Open with something specific about THEM — a post they made, a result they achieved, a problem you noticed. Not generic flattery.' },
+      { title: 'Low-Friction Ask', body: 'First message: one simple question or "worth a quick chat?" Never ask for a 30-minute call from a stranger. Each step earns the next.' },
+      { title: 'Follow-Up Angle Rotation', body: 'Touch 1: Problem. Touch 2: New proof point. Touch 3: Different angle. Touch 4: Useful resource. Touch 5: Breakup email.' },
+      { title: 'The Breakup Email', body: '"I\'ll stop reaching out after this — but wanted to share one last thing…" Often gets the highest reply rate of the whole sequence.' },
+      { title: 'What to Avoid', body: 'Never: synergy, leverage, best-in-class, circle back. Never: HTML, images, multiple links in first touch. Never: fake "Re:" subject lines.' }
+    ]
+  },
+  {
+    id: 'page-cro',
+    title: 'Page CRO',
+    category: 'growth',
+    icon: '\uD83D\uDCC8',
+    desc: 'Audit any page for conversion opportunities using heatmap thinking, UX principles and A/B test ideas.',
+    tags: ['CRO', 'A/B Testing', 'Landing Pages', 'UX'],
+    fields: [
+      { id: 'pageType', label: 'Page Type', type: 'select', options: ['Landing page', 'Homepage', 'Services page', 'Pricing page', 'About page', 'Blog post', 'Sales page', 'Booking page'] },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Peak Performance UAE' },
+      { id: 'traffic', label: 'Traffic Source', type: 'select', options: ['Instagram / Social organic', 'Paid ads (Meta/Google)', 'Email marketing', 'Organic SEO', 'WhatsApp referrals', 'Direct / word of mouth', 'Unknown'] },
+      { id: 'cta', label: 'Current CTA', type: 'text', placeholder: 'e.g. "Book a free call"' },
+      { id: 'problem', label: 'Known Issue / What\'s Not Working', type: 'textarea', placeholder: 'e.g. People visit but don\'t book. High bounce rate on mobile.', full: true }
+    ],
+    prompt: (v) => `You are an expert CRO specialist. Audit this ${v.pageType} for ${v.business} and provide a full conversion optimisation report.
+
+BUSINESS: ${v.business}
+PAGE TYPE: ${v.pageType}
+TRAFFIC SOURCE: ${v.traffic}
+CURRENT CTA: ${v.cta}
+KNOWN ISSUE: ${v.problem}
+
+Deliver:
+1. CONVERSION SCORE — Rate the page /10 across: Hero clarity, Value proposition, Trust signals, CTA strength, Mobile UX, Page flow
+2. TOP 5 CONVERSION KILLERS — specific issues with this page type and traffic source
+3. QUICK WINS — 3 changes to make this week that will move the needle immediately
+4. A/B TEST IDEAS — 5 specific hypotheses to test, with predicted impact (Low/Med/High)
+5. OPTIMISED CTA — rewrite the current CTA with 3 variations to test
+6. TRUST SIGNAL GAPS — what proof elements are missing?
+
+Be specific. Reference the traffic source when explaining issues — ${v.traffic} visitors have different intent than other sources.`,
+    framework: [
+      { title: 'The Conversion Audit Stack', body: 'Score 6 elements: Hero clarity (is the offer immediately obvious?), Value prop, Trust signals, CTA strength, Mobile UX, Page flow/scroll depth.' },
+      { title: 'Message Match Rule', body: 'The headline must match the ad/source that sent the visitor. Mismatch = instant bounce. Check every traffic source separately.' },
+      { title: 'Single CTA Principle', body: 'One page, one action. Remove navigation on landing pages. Every link that isn\'t your CTA is a leak.' },
+      { title: 'Trust Signal Hierarchy', body: 'Customer count > Named testimonials > Star ratings > Logos > Guarantees. Place the strongest signal nearest your CTA.' },
+      { title: 'A/B Test Priority', body: 'Test high-impact, high-traffic elements first: Hero headline, CTA button text, Hero image, Pricing presentation, Form length.' }
+    ]
+  },
+  {
+    id: 'email-sequence',
+    title: 'Email Sequences',
+    category: 'outreach',
+    icon: '\uD83D\uDC8C',
+    desc: 'Build automated nurture and onboarding sequences that move leads through the funnel on autopilot.',
+    tags: ['Email Automation', 'Nurture', 'Welcome Series', 'Drip'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'sequenceType', label: 'Sequence Type', type: 'select', options: ['Welcome / onboarding', 'Lead magnet follow-up', 'Abandoned booking', 'Post-purchase / onboarding', 'Re-engagement', 'Launch / waitlist', 'Proposal follow-up'] },
+      { id: 'audience', label: 'Who\'s Receiving This', type: 'text', placeholder: 'e.g. New leads who downloaded the free audit' },
+      { id: 'goal', label: 'Sequence Goal', type: 'text', placeholder: 'e.g. Book a discovery call within 7 days' },
+      { id: 'emails', label: 'Number of Emails', type: 'select', options: ['3 emails', '5 emails', '7 emails', '10 emails'] },
+      { id: 'tone', label: 'Tone', type: 'select', options: ['Warm & personal', 'Professional & polished', 'Educational & helpful', 'Bold & direct'] }
+    ],
+    prompt: (v) => `You are an expert email marketing strategist. Write a ${v.emails} ${v.sequenceType} sequence for ${v.business}.
+
+BUSINESS: ${v.business}
+SEQUENCE TYPE: ${v.sequenceType}
+AUDIENCE: ${v.audience}
+GOAL: ${v.goal}
+TONE: ${v.tone}
+
+For each email deliver:
+- Subject line (+ 1 A/B variant)
+- Preview text
+- Full email body (ready to send)
+- Send timing (e.g. Day 0, Day 2, Day 5…)
+- The psychological principle driving this email
+
+Rules:
+- Each email must stand alone (recipients may not have read previous ones)
+- Increase specificity and urgency as the sequence progresses
+- Add value in every email before asking for anything
+- Final email: low-pressure, clear final CTA
+- Tone: ${v.tone} throughout
+
+End with a sequence overview table: Email # | Subject | Send Day | Goal | Psychological Hook`,
+    framework: [
+      { title: 'Sequence Architecture', body: 'Email 1: Welcome + deliver promise. Email 2: Teach one thing. Email 3: Social proof. Email 4: Handle objection. Email 5: Clear CTA.' },
+      { title: 'The Value-Before-Ask Rule', body: 'At least 2 emails of pure value before any pitch. Readers who learn from you first are 3x more likely to buy.' },
+      { title: 'Urgency Escalation', body: 'Emails 1–3: pure value. Email 4: introduce the offer. Email 5: add scarcity/deadline. Never manufacture fake urgency.' },
+      { title: 'Subject Line Formula', body: 'Curiosity gap ("Why your Instagram isn\'t converting") > Direct benefit ("Get 10 bookings this month") > Personal ("Quick question, [Name]").' },
+      { title: 'Re-engagement Trigger', body: 'After 90 days of silence: send a "We miss you" email with a specific, time-limited reason to return. If no open: remove or tag as inactive.' }
+    ]
+  },
+  {
+    id: 'lead-magnet',
+    title: 'Lead Magnets',
+    category: 'growth',
+    icon: '\uD83C\uDFAF',
+    desc: 'Design high-converting lead magnets that attract the right leads and feed your email list.',
+    tags: ['Lead Gen', 'Freebies', 'Opt-in', 'List Building'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Elite Property Group' },
+      { id: 'audience', label: 'Ideal Audience', type: 'text', placeholder: 'e.g. Dubai landlords with 3+ units' },
+      { id: 'problem', label: 'Their Biggest Problem', type: 'text', placeholder: 'e.g. Vacant units, unreliable tenants' },
+      { id: 'service', label: 'Your Core Service', type: 'text', placeholder: 'e.g. Full property management packages' },
+      { id: 'format', label: 'Preferred Format', type: 'select', options: ['Checklist (1–2 pages)', 'Cheat sheet', 'Swipe file', 'Mini guide / ebook', 'Quiz / assessment', 'Email mini-course', 'Free audit / review', 'Template (Notion/Google)'] }
+    ],
+    prompt: (v) => `You are an expert lead magnet strategist. Design a high-converting lead magnet for ${v.business}.
+
+BUSINESS: ${v.business}
+TARGET AUDIENCE: ${v.audience}
+THEIR BIGGEST PROBLEM: ${v.problem}
+YOUR SERVICE: ${v.service}
+FORMAT: ${v.format}
+
+Deliver:
+1. LEAD MAGNET TITLE — 3 title options (use specific numbers and outcomes)
+2. HOOK — the opening line that makes them want it immediately
+3. FULL CONTENT OUTLINE — exactly what's inside (sections, tips, checklist items)
+4. THE BRIDGE — how this naturally leads to your service (not salesy, just logical)
+5. OPT-IN PAGE COPY — headline, bullet benefits (3–5), CTA button text
+6. DELIVERY EMAIL SUBJECT — the email subject line that gets opened
+7. PROMOTION IDEAS — 3 ways to promote this lead magnet on social media
+
+Make the content genuinely useful — not a teaser. The lead magnet should solve a real micro-problem so they trust you with the bigger one.`,
+    framework: [
+      { title: 'The 5 Lead Magnet Rules', body: '1. Promises a specific outcome. 2. Consumable in under 30 min. 3. Solves a problem your paid service also solves. 4. High perceived value. 5. Easy to consume on mobile.' },
+      { title: 'Awareness Stage Magnets', body: 'Checklists, cheat sheets, short guides. Attract people who know they have a problem but don\'t know the solution yet.' },
+      { title: 'Decision Stage Magnets', body: 'Free audits, implementation guides, done-for-you templates. Attract people ready to buy — just need the final push.' },
+      { title: 'Title Formula', body: '"[Number] [Specific Things] to [Desirable Outcome] in [Timeframe]" — e.g. "7 Instagram Posts That Booked 14 New Clients in 30 Days".' },
+      { title: 'The Natural Bridge', body: 'The lead magnet\'s last page should make your paid service the obvious next step — without selling. Just show them what\'s possible with more support.' }
+    ]
+  },
+  {
+    id: 'marketing-psychology',
+    title: 'Marketing Psychology',
+    category: 'strategy',
+    icon: '\uD83E\uDDE0',
+    desc: 'Apply cognitive biases, persuasion principles and behavioural science to increase conversions ethically.',
+    tags: ['Persuasion', 'Conversion', 'Psychology', 'Pricing'],
+    fields: [
+      { id: 'challenge', label: 'Marketing Challenge', type: 'select', options: ['Low landing page conversions', 'Price objections', 'Building trust with new audience', 'Increasing urgency', 'Reducing churn / cancellations', 'Improving email open rates', 'Getting DM replies', 'Overcoming "I need to think about it"'] },
+      { id: 'business', label: 'Business / Context', type: 'text', placeholder: 'e.g. Luxury PT studio, AED 2,500/month' },
+      { id: 'audience', label: 'Audience', type: 'text', placeholder: 'e.g. High-income professionals in Dubai' },
+      { id: 'stage', label: 'Funnel Stage', type: 'select', options: ['Awareness (they don\'t know us)', 'Consideration (comparing options)', 'Decision (ready to buy, hesitating)', 'Post-purchase (retention)'] }
+    ],
+    prompt: (v) => `You are an expert in marketing psychology and behavioural science. Apply psychological principles to solve this challenge for ${v.business}.
+
+CHALLENGE: ${v.challenge}
+BUSINESS: ${v.business}
+AUDIENCE: ${v.audience}
+FUNNEL STAGE: ${v.stage}
+
+Deliver:
+1. ROOT CAUSE ANALYSIS — what's the psychological reason this challenge exists?
+2. TOP 3 PRINCIPLES TO APPLY — name each principle, explain the psychology, give a specific implementation example for this business
+3. COPY/MESSAGE EXAMPLES — show exactly what to say, write or display to activate each principle
+4. WHAT TO AVOID — 2 common psychological mistakes businesses make at this stage
+5. QUICK WIN — one thing they can change today that will show results within a week
+
+Be specific to ${v.business} and the ${v.stage} stage. Generic advice is useless here.`,
+    framework: [
+      { title: 'Loss Aversion (2x Stronger Than Gain)', body: '"Don\'t miss out on X" converts better than "Get X". Frame around what they\'ll lose by not acting, not what they\'ll gain.' },
+      { title: 'Social Proof Hierarchy', body: 'Named testimonials with specifics > Anonymous reviews > Customer count > Logo wall. Specifics win: "Lost 12kg in 8 weeks" beats "Great results!".' },
+      { title: 'Anchoring Effect', body: 'Show the premium option first. Everything else feels cheaper by comparison. Present your full retainer before the landing page package.' },
+      { title: 'Commitment & Consistency', body: 'Small yes leads to big yes. A free audit creates psychological commitment. Someone who accepted a favour wants to stay consistent.' },
+      { title: 'Scarcity vs Urgency', body: 'Scarcity = limited supply ("2 spots left"). Urgency = limited time ("Price increases Friday"). Real scarcity converts. Fake scarcity destroys trust.' },
+      { title: 'Framing Effect', body: '"$3/day" vs "$90/month". Same number, radically different perception. Frame prices against daily alternatives your audience already spends on.' }
+    ]
+  },
+  {
+    id: 'launch-strategy',
+    title: 'Launch Strategy',
+    category: 'strategy',
+    icon: '\uD83D\uDE80',
+    desc: 'Build a complete pre-launch, launch, and post-launch content + outreach strategy for any offer.',
+    tags: ['Launches', 'Campaign', 'Sales Strategy', 'Hype'],
+    fields: [
+      { id: 'offer', label: 'What You\'re Launching', type: 'text', placeholder: 'e.g. New social media management package' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. UAE business owners, 200 Instagram followers' },
+      { id: 'timeline', label: 'Launch Timeline', type: 'select', options: ['1 week runway', '2 weeks runway', '4 weeks runway', '6 weeks runway'] },
+      { id: 'channels', label: 'Available Channels', type: 'select', options: ['Instagram only', 'Instagram + Email', 'Instagram + WhatsApp', 'Instagram + LinkedIn + Email', 'All channels'] },
+      { id: 'goal', label: 'Launch Goal', type: 'text', placeholder: 'e.g. 5 new clients, $3,000 in revenue' }
+    ],
+    prompt: (v) => `You are an expert launch strategist. Build a complete launch plan for ${v.business}.
+
+OFFER: ${v.offer}
+BUSINESS: ${v.business}
+AUDIENCE: ${v.audience}
+TIMELINE: ${v.timeline}
+CHANNELS: ${v.channels}
+GOAL: ${v.goal}
+
+Deliver a week-by-week plan with:
+
+PRE-LAUNCH PHASE:
+- Audience warming content (specific post ideas with captions)
+- Teaser strategy and curiosity-building posts
+- Waitlist / early access mechanic if applicable
+
+LAUNCH WEEK:
+- Day-by-day content schedule
+- Stories, posts, and DM outreach messages
+- Email subject lines (if email available)
+- The "big reveal" post copy
+
+POST-LAUNCH (Follow-up):
+- How to handle enquiries
+- Objection-busting content
+- Last chance urgency sequence
+- Re-engagement for those who said "not yet"
+
+End with a LAUNCH DASHBOARD: key metrics to track daily.`,
+    framework: [
+      { title: 'The 3-Phase Launch Structure', body: 'Pre-launch (warm, tease, build anticipation) → Launch week (reveal, push, convert) → Post-launch (follow-up, urgency, objection handling).' },
+      { title: 'Warm Audience First', body: 'Never launch cold. Spend at least 2 weeks giving value before any offer. The audience should feel like they already know you.' },
+      { title: 'The Cart Close Sequence', body: 'Day before close: reminder + testimonial. Morning of close: "last chance". Evening of close: "closing tonight". Creates urgency without desperation.' },
+      { title: 'DM Outreach During Launch', body: 'Personal DMs to warm leads during launch week outperform any post. "Saw you\'ve been following our content — launching X tomorrow. Want early access?"' }
+    ]
+  },
+  {
+    id: 'content-strategy',
+    title: 'Content Strategy',
+    category: 'strategy',
+    icon: '\uD83D\uDCCD',
+    desc: 'Build a long-term content engine with pillars, distribution systems, and repurposing workflows.',
+    tags: ['Content Pillars', 'Strategy', 'Distribution', 'Repurposing'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Atlas Property Group' },
+      { id: 'industry', label: 'Industry', type: 'text', placeholder: 'e.g. Property Management, UAE' },
+      { id: 'audience', label: 'Ideal Audience', type: 'text', placeholder: 'e.g. Landlords and investors in Dubai' },
+      { id: 'goal', label: 'Business Goal (6 months)', type: 'text', placeholder: 'e.g. 20 new property management clients' },
+      { id: 'resources', label: 'Content Resources', type: 'select', options: ['Solo founder, limited time', 'Small team, 5hrs/week', 'Dedicated marketing person', 'Agency handling content'] },
+      { id: 'stage', label: 'Business Stage', type: 'select', options: ['Brand new (0 audience)', 'Growing (under 1k followers)', 'Established (1k–10k)', 'Scale (10k+)'] }
+    ],
+    prompt: (v) => `You are an expert content strategist. Build a 90-day content strategy for ${v.business}.
+
+BUSINESS: ${v.business}
+INDUSTRY: ${v.industry}
+TARGET AUDIENCE: ${v.audience}
+6-MONTH GOAL: ${v.goal}
+RESOURCES: ${v.resources}
+STAGE: ${v.stage}
+
+Deliver:
+1. CONTENT MISSION STATEMENT — one sentence that defines what content does for this business
+2. 4–5 CONTENT PILLARS — name, purpose, % of content, example topics per pillar
+3. PLATFORM STRATEGY — primary platform, secondary platform, why, frequency for each
+4. 90-DAY ROADMAP — Month 1 (establish), Month 2 (build), Month 3 (convert)
+5. REPURPOSING SYSTEM — how one piece of content becomes 5+ pieces
+6. CONTENT-TO-LEAD BRIDGE — exactly how content converts to enquiries for this business
+7. WHAT NOT TO DO — 3 common content mistakes in the ${v.industry} industry
+
+Format as a clear strategic document, not a bullet list dump. This should read like a proper strategy.`,
+    framework: [
+      { title: 'Content Mission Statement', body: '"We create content that helps [audience] do [thing] so that [business outcome]." Every piece of content should serve this mission.' },
+      { title: 'The Pillar-to-Post System', body: 'Each pillar generates infinite posts: 1 pillar → 4 subtopics → 5 formats each = 20 posts per pillar per month with zero creative fatigue.' },
+      { title: 'Distribution Before Creation', body: 'It\'s not about making more content. It\'s about getting existing content in front of more people. Repurpose first, create second.' },
+      { title: '90-Day Content Phases', body: 'Month 1: Establish authority and voice. Month 2: Build trust and proof. Month 3: Convert with offers and direct CTAs. Don\'t skip to selling.' }
+    ]
+  },
+  {
+    id: 'ad-creative',
+    title: 'Ad Creative',
+    category: 'growth',
+    icon: '\uD83C\uDFA8',
+    desc: 'Write high-performing Meta and social ad copy with hooks, body copy and CTAs designed to convert.',
+    tags: ['Meta Ads', 'Ad Copy', 'Creative Strategy', 'ROAS'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Glow Beauty Clinic Dubai' },
+      { id: 'offer', label: 'What Are You Advertising?', type: 'text', placeholder: 'e.g. Free consultation for lip filler (AED 800 value)' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Women 25–45, Dubai, interested in beauty' },
+      { id: 'platform', label: 'Ad Platform', type: 'select', options: ['Meta (Facebook + Instagram)', 'Instagram only', 'TikTok', 'Google', 'Snapchat'] },
+      { id: 'format', label: 'Ad Format', type: 'select', options: ['Static image', 'Short video / Reel', 'Carousel', 'Story ad', 'All formats'] },
+      { id: 'budget', label: 'Approximate Budget', type: 'select', options: ['AED 500–1,500/month (starter)', 'AED 1,500–4,000/month (growth)', 'AED 4,000+/month (scale)', 'One-time campaign'] }
+    ],
+    prompt: (v) => `You are an expert paid social ad strategist. Write high-converting ad creative for ${v.business}.
+
+BUSINESS: ${v.business}
+OFFER: ${v.offer}
+TARGET AUDIENCE: ${v.audience}
+PLATFORM: ${v.platform}
+FORMAT: ${v.format}
+BUDGET LEVEL: ${v.budget}
+
+Deliver 3 complete ad variations:
+
+For each variation:
+- AD NAME (internal reference)
+- HOOK (first 3 seconds / first line — this determines everything)
+- PRIMARY TEXT (full ad body, 3–5 sentences)
+- HEADLINE (shown under image)
+- CTA BUTTON TEXT
+- VISUAL BRIEF (what to show in image/video)
+- WHY THIS WILL WORK (1–2 sentences on the psychological angle)
+
+Then add:
+- TESTING STRATEGY — which element to A/B test first and why
+- AUDIENCE TARGETING NOTES — specific interest/behaviour targeting for ${v.platform}
+- SCALING NOTE — what to do if one ad starts winning
+
+Variation 1: Curiosity hook. Variation 2: Pain-point hook. Variation 3: Social proof hook.`,
+    framework: [
+      { title: 'The 3-Second Hook Rule', body: 'If the hook doesn\'t stop the scroll in 3 seconds, nothing else matters. Lead with a bold claim, a relatable pain, a surprising stat, or a direct question.' },
+      { title: 'Hook Archetypes', body: '1. Curiosity: "Most people don\'t know this about [topic]". 2. Pain: "Still [suffering from X]?" 3. Proof: "How [customer] achieved [result]". 4. Pattern interrupt: Start with silence, bold visual, or unexpected statement.' },
+      { title: 'The One-Two-Three Formula', body: 'Line 1: Hook (stop scroll). Line 2: Agitate (amplify the pain or desire). Line 3: Offer (here\'s the solution). Keep it tight.' },
+      { title: 'Testing Priority', body: 'Test hooks first (biggest variable). Then visuals. Then body copy. Never change two things at once. Let each test run 3+ days before judging.' }
+    ]
+  },
+  {
+    id: 'pricing-strategy',
+    title: 'Pricing Strategy',
+    category: 'strategy',
+    icon: '\uD83D\uDCB0',
+    desc: 'Structure pricing, packages and positioning to maximise perceived value, AOV and conversion.',
+    tags: ['Pricing', 'Packages', 'Upsell', 'Anchoring'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'service', label: 'Service / Product', type: 'text', placeholder: 'e.g. Social media management packages' },
+      { id: 'current', label: 'Current Pricing (if any)', type: 'text', placeholder: 'e.g. Flat rate AED 2,000/month for everything' },
+      { id: 'market', label: 'Market', type: 'select', options: ['UAE / GCC (premium market)', 'UK / Europe', 'USA / North America', 'Global / mixed', 'Budget-conscious market'] },
+      { id: 'challenge', label: 'Pricing Challenge', type: 'select', options: ['Clients always negotiate down', 'Undercharging, don\'t know what to charge', 'Need to create tiered packages', 'Want to increase prices without losing clients', 'Need to justify premium pricing', 'Want to add a high-ticket offer'] }
+    ],
+    prompt: (v) => `You are an expert pricing strategist. Redesign the pricing structure for ${v.business}.
+
+BUSINESS: ${v.business}
+SERVICE: ${v.service}
+CURRENT PRICING: ${v.current}
+MARKET: ${v.market}
+CHALLENGE: ${v.challenge}
+
+Deliver:
+1. PRICING AUDIT — what's wrong with the current approach (if provided) and why
+2. RECOMMENDED PACKAGE STRUCTURE — 3 tiers with:
+   - Package name (not "Basic/Standard/Premium")
+   - Exactly what's included
+   - Price in AED and USD
+   - Who it's positioned for
+   - The psychological rationale for this price point
+3. ANCHORING STRATEGY — how to present these packages so the middle tier gets chosen
+4. OBJECTION HANDLING SCRIPTS — word-for-word responses to "that's too expensive" and "can you do it cheaper?"
+5. PRICE INCREASE SCRIPT — if they need to raise current prices, how to communicate it to existing clients
+6. UPSELL LADDER — the natural upgrade path from each tier
+
+Apply: anchoring, decoy pricing, loss aversion, and value framing throughout.`,
+    framework: [
+      { title: 'The 3-Tier Decoy Structure', body: 'Tier 1 (anchor low — makes Tier 2 feel reasonable). Tier 2 (your target — must be priced so it wins). Tier 3 (premium — makes Tier 2 feel safe). 60-70% choose Tier 2.' },
+      { title: 'Name Packages by Outcome', body: 'Not "Basic/Standard/Premium". Use outcome names: "Launch", "Growth", "Scale" or client type names. Clients choose identity, not features.' },
+      { title: 'The Value Bridge', body: 'Price objections disappear when ROI is clear. "AED 3,000/month sounds expensive until you realise one new client pays for 3 months." Always do the maths out loud.' },
+      { title: 'Price Increase Communication', body: '"I\'m raising my prices on [date]. Existing clients can lock in current rates until [date]." Urgency + loyalty reward. Most clients renew rather than risk losing you.' }
+    ]
+  },
+
+  // ── SEO & GROWTH ──
+  {
+    id: 'seo-content-brief',
+    title: 'SEO Content Brief',
+    category: 'seo',
+    icon: '\uD83D\uDD0D',
+    desc: 'Generate comprehensive content briefs for any keyword — structure, intent, schema, snippets and internal links.',
+    tags: ['SEO', 'Content Brief', 'Schema', 'Featured Snippet'],
+    fields: [
+      { id: 'keyword', label: 'Target Keyword', type: 'text', placeholder: 'e.g. property management Dubai' },
+      { id: 'business', label: 'Business / Site', type: 'text', placeholder: 'e.g. Atlas Property Group' },
+      { id: 'intent', label: 'Search Intent', type: 'select', options: ['Informational (how-to, what is)', 'Commercial (best, compare, reviews)', 'Transactional (buy, hire, book)', 'Navigational (brand/location specific)'] },
+      { id: 'wc', label: 'Target Word Count', type: 'select', options: ['800–1,200 words (short)', '1,500–2,000 words (standard)', '2,500–3,500 words (pillar)', '4,000+ words (definitive guide)'] }
+    ],
+    prompt: (v) => `Generate a comprehensive content brief for the keyword "${v.keyword}" for ${v.business}.
+
+KEYWORD: ${v.keyword}
+SEARCH INTENT: ${v.intent}
+TARGET WORD COUNT: ${v.wc}
+
+Include ALL of the following:
+1. SEARCH INTENT ANALYSIS — what the searcher actually wants, buyer stage, implied questions
+2. RECOMMENDED WORD COUNT — with justification based on competitor analysis
+3. H1 / H2 / H3 STRUCTURE — full heading outline with target sub-keywords for each section
+4. META TITLE (under 60 chars) + META DESCRIPTION (under 155 chars)
+5. COMPETITOR GAPS — 5 angles competitors likely missed that I can use to outrank
+6. INTERNAL LINKING TARGETS — 3–5 pages on the site to link to/from, with anchor text
+7. FEATURED SNIPPET STRATEGY — format (paragraph/list/table), exact question to target, ideal answer length
+8. SCHEMA MARKUP RECOMMENDATION — type to use (Article, FAQ, HowTo, LocalBusiness, etc.) with key fields
+9. CONTENT UNIQUENESS NOTES — what to include that makes this piece 10x better than page 1 results
+
+Output as a structured brief I can hand to a writer or use myself.`,
+    framework: [
+      { title: 'Search Intent First', body: 'Before writing a word, nail the intent. Informational → educate. Commercial → compare. Transactional → convert. Wrong intent = zero rankings regardless of quality.' },
+      { title: 'Featured Snippet Formula', body: 'Target question → 40–60 word direct answer in first paragraph → support with list or table below. Google extracts the clean answer, you get position zero.' },
+      { title: 'H2/H3 Structure = SEO Architecture', body: 'Each H2 is a sub-topic. Each H3 is a sub-angle. Map them to related keywords, not just what sounds logical to you.' },
+      { title: 'Internal Linking as a Ranking Signal', body: 'Link new content to 3–5 existing pages, and update existing pages to link back. This passes authority and tells Google what matters on your site.' }
+    ]
+  },
+  {
+    id: 'seo-competitor-gap',
+    title: 'Competitor Gap Analysis',
+    category: 'seo',
+    icon: '\uD83D\uDD0E',
+    desc: 'Analyse competitor pages ranking for your keyword, find content gaps, and build a strategy to outrank them.',
+    tags: ['SEO', 'Competitor Research', 'Content Gaps', 'Backlinks'],
+    fields: [
+      { id: 'keyword', label: 'Target Keyword', type: 'text', placeholder: 'e.g. best social media agency Dubai' },
+      { id: 'urls', label: 'Competitor URLs (paste up to 5)', type: 'textarea', placeholder: 'https://competitor1.com/page\nhttps://competitor2.com/page', full: true },
+      { id: 'business', label: 'Your Business / Site', type: 'text', placeholder: 'e.g. socinestglobal.com' }
+    ],
+    prompt: (v) => `Analyze these competitor pages ranking for "${v.keyword}" and build a strategy for ${v.business} to outrank them.
+
+KEYWORD: ${v.keyword}
+YOUR SITE: ${v.business}
+COMPETITOR URLS:
+${v.urls}
+
+Deliver a full competitive gap analysis:
+1. CONTENT GAPS — topics, subtopics, questions these pages don't cover that I can own
+2. WORD COUNT COMPARISON — estimate each page's depth; what count should I target?
+3. BACKLINK ANGLE — what type of sites would link to a better version of this content?
+4. CONTENT FRESHNESS GAPS — are these pages outdated? What new angles does that open?
+5. UNIQUE ANGLES THEY MISSED — 5 specific hooks, data points, or perspectives none of them used
+6. HEADLINE OPPORTUNITIES — 3 alternative title formats that could out-click theirs in SERPs
+7. MY WINNING STRATEGY — step-by-step plan to create a page that beats all 5 within 90 days
+
+Be specific and tactical. Generic SEO advice is useless here.`,
+    framework: [
+      { title: 'The Skyscraper Technique', body: 'Find the best-ranking content → make something objectively better (more complete, more current, better design) → promote it to the same sites linking to the original.' },
+      { title: 'Content Gap = Ranking Opportunity', body: 'Every question your competitors don\'t answer is a featured snippet you can own. Map all H2/H3s from top 5 results to find white space.' },
+      { title: 'Freshness as a Differentiator', body: 'If top results are 2+ years old, recency is your edge. Add current stats, update dates, reference recent events. Google rewards freshness in many categories.' }
+    ]
+  },
+  {
+    id: 'programmatic-seo',
+    title: 'Programmatic SEO',
+    category: 'seo',
+    icon: '⚙',
+    desc: 'Build a strategy to generate 100+ SEO pages from a data source — URL structure, templates, canonicals.',
+    tags: ['Programmatic SEO', 'Scale', 'Templates', 'Thin Content'],
+    fields: [
+      { id: 'business', label: 'Business / Site', type: 'text', placeholder: 'e.g. Dubai Property Listings platform' },
+      { id: 'dataSource', label: 'Data Source', type: 'text', placeholder: 'e.g. database of 500 Dubai neighbourhoods' },
+      { id: 'pageType', label: 'Page Type to Generate', type: 'text', placeholder: 'e.g. "[Neighbourhood] property management" pages' },
+      { id: 'volume', label: 'Estimated Page Volume', type: 'select', options: ['100–500 pages', '500–2,000 pages', '2,000–10,000 pages', '10,000+ pages'] }
+    ],
+    prompt: (v) => `Create a programmatic SEO strategy for ${v.business} that generates ${v.volume} from ${v.dataSource}.
+
+BUSINESS: ${v.business}
+DATA SOURCE: ${v.dataSource}
+PAGE TYPE: ${v.pageType}
+SCALE: ${v.volume}
+
+Deliver:
+1. URL STRUCTURE — recommended URL pattern with examples
+2. PAGE TEMPLATE — section-by-section layout for each programmatic page (what content goes where)
+3. DYNAMIC CONTENT VARIABLES — what fields from the data source populate which page sections
+4. INTERNAL LINKING PLAN — how pages link to each other and to pillar pages
+5. CRAWL BUDGET OPTIMISATION — how to ensure Google crawls and indexes priority pages first
+6. CANONICAL STRATEGY — how to handle near-duplicate content across similar pages
+7. CONTENT UNIQUENESS THRESHOLDS — minimum unique content % per page to avoid thin content penalties
+8. QUALITY SIGNALS — what to add to each page to make Google see it as high-quality despite scale
+9. LAUNCH SEQUENCE — in what order to publish pages for maximum early traction
+
+Include specific examples using ${v.dataSource} as the source.`,
+    framework: [
+      { title: 'Template + Variable Formula', body: 'Every programmatic page = fixed template (same structure) + unique variables (location, category, data). The template provides quality signals; the variables provide uniqueness.' },
+      { title: 'Crawl Budget Reality', body: 'Google won\'t crawl 10,000 new pages overnight. Prioritise your highest-value pages in sitemaps, link to them from important pages, and submit in batches.' },
+      { title: 'Thin Content Prevention', body: 'Each page needs: unique H1, unique intro paragraph (100+ words), at least one data-unique section, and internal links. Pages without these will be filtered from index.' }
+    ]
+  },
+  {
+    id: 'seo-ranking-landing',
+    title: 'SEO Landing Page',
+    category: 'seo',
+    icon: '\uD83C\uDFC6',
+    desc: 'Write a landing page that ranks AND converts at 5%+ — combining SEO structure with conversion copy.',
+    tags: ['SEO', 'Landing Page', 'CRO', 'FAQ Schema'],
+    fields: [
+      { id: 'keyword', label: 'Target Keyword', type: 'text', placeholder: 'e.g. social media management Dubai' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'service', label: 'Service Being Promoted', type: 'text', placeholder: 'e.g. Monthly social media management packages' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. UAE SME business owners' },
+      { id: 'cta', label: 'Primary CTA', type: 'text', placeholder: 'e.g. Book a free strategy call' }
+    ],
+    prompt: (v) => `Write a landing page for "${v.keyword}" for ${v.business} that ranks on page 1 AND converts at 5%+.
+
+KEYWORD: ${v.keyword}
+BUSINESS: ${v.business}
+SERVICE: ${v.service}
+AUDIENCE: ${v.audience}
+CTA: ${v.cta}
+
+Deliver the COMPLETE page with:
+1. SEO-OPTIMISED TITLE TAG + META DESCRIPTION
+2. ABOVE-THE-FOLD COPY — headline (with keyword), subheadline, hero CTA, social proof line
+3. PROBLEM SECTION — agitate the pain this audience feels
+4. SOLUTION SECTION — position ${v.business} as the answer with specific proof
+5. SERVICES/FEATURES SECTION — benefits-led, not feature-led
+6. SOCIAL PROOF SECTION — testimonial template + stats layout
+7. FAQ SECTION — 6 questions optimised for FAQ schema and featured snippets
+8. FINAL CTA SECTION — urgency copy + CTA button text options
+9. CTA PLACEMENT STRATEGY — where to place CTAs on the page and why
+10. TRUST SIGNALS CHECKLIST — what to add (badges, logos, guarantees)
+11. MOBILE-FIRST LAYOUT NOTES — what to prioritise above fold on mobile
+
+Target keyword density: natural integration, not stuffing. Conversion target: 5%+.`,
+    framework: [
+      { title: 'The Dual Optimisation Rule', body: 'SEO gets them to the page. CRO converts them. Never sacrifice one for the other. Structure for Google\'s crawlers, write for humans\' emotions.' },
+      { title: 'FAQ Schema = Double Ranking', body: 'FAQ sections with schema markup can earn both a regular ranking AND an expandable FAQ block in SERPs. That\'s double the real estate for the same page.' },
+      { title: 'Above-the-Fold Conversion Formula', body: 'Keyword-rich H1 + benefit-led subheadline + social proof signal (X clients / X years) + single CTA. Everything critical must be visible without scrolling on mobile.' }
+    ]
+  },
+  {
+    id: 'site-seo-audit',
+    title: 'Site SEO Audit',
+    category: 'seo',
+    icon: '\uD83D\uDEE0',
+    desc: 'Audit a site for crawlability, internal links, orphan pages, cannibalization and Core Web Vitals.',
+    tags: ['Technical SEO', 'Audit', 'Core Web Vitals', 'Crawlability'],
+    fields: [
+      { id: 'url', label: 'Site URL', type: 'text', placeholder: 'e.g. https://socinestglobal.com' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'pages', label: 'Approx. Number of Pages', type: 'select', options: ['Under 20 pages', '20–100 pages', '100–500 pages', '500+ pages'] },
+      { id: 'priority', label: 'Audit Priority', type: 'select', options: ['Full technical audit', 'Quick wins only', 'Content & structure focus', 'Speed & Core Web Vitals focus'] }
+    ],
+    prompt: (v) => `Conduct a comprehensive SEO audit for ${v.business} (${v.url}).
+
+SITE: ${v.url}
+BUSINESS: ${v.business}
+SITE SIZE: ${v.pages}
+PRIORITY: ${v.priority}
+
+Check and report on ALL of the following:
+
+TECHNICAL:
+- Crawlability issues (robots.txt, noindex tags, redirect chains)
+- Internal link structure — orphan pages, pages with no internal links
+- Keyword cannibalization — pages competing for same keywords
+- Core Web Vitals — LCP, FID/INP, CLS (issues and fixes)
+- Mobile-friendliness problems
+- HTTPS / security issues
+- XML sitemap health
+
+CONTENT:
+- Thin content pages (under 300 words with no clear purpose)
+- Duplicate or near-duplicate content
+- Missing or duplicate title tags / meta descriptions
+- H1 issues (missing, multiple, or not keyword-aligned)
+
+OUTPUT FORMAT:
+For each issue found:
+- Issue name
+- Severity: Critical / High / Medium / Low
+- Estimated traffic impact
+- Specific fix with implementation steps
+- Time to implement (hours)
+
+End with a PRIORITISED FIX LIST — ordered by impact/effort ratio. Top 10 fixes to do first.`,
+    framework: [
+      { title: 'Impact/Effort Prioritisation', body: 'Fix Critical technical issues first (they block everything else). Then High-impact content fixes. Never spend time on Low issues when Critical ones exist.' },
+      { title: 'Keyword Cannibalization Kill', body: 'Two pages targeting the same keyword split your authority. Consolidate into one stronger page, 301 redirect the weaker one, and watch the survivor climb.' },
+      { title: 'Core Web Vitals = Ranking Factor', body: 'LCP under 2.5s, CLS under 0.1, INP under 200ms. Image optimisation and removing render-blocking scripts fix 80% of CWV issues for most sites.' }
+    ]
+  },
+  {
+    id: 'topical-authority',
+    title: 'Topical Authority Map',
+    category: 'seo',
+    icon: '\uD83D\uDDC2',
+    desc: 'Build a topical authority map — cluster 50 keywords into pillar and supporting pages with a 6-month roadmap.',
+    tags: ['Topical Authority', 'Keyword Clusters', 'Pillar Pages', 'Roadmap'],
+    fields: [
+      { id: 'niche', label: 'Niche / Industry', type: 'text', placeholder: 'e.g. Property Management in the UAE' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Atlas Property Group' },
+      { id: 'stage', label: 'Site Authority Stage', type: 'select', options: ['New site (0 authority)', 'Growing (some rankings)', 'Established (moderate authority)', 'Strong (ranking for competitive terms)'] },
+      { id: 'cluster', label: 'Number of Topic Clusters', type: 'select', options: ['3 clusters (focused)', '5 clusters (standard)', '8 clusters (broad)', '10+ clusters (enterprise)'] }
+    ],
+    prompt: (v) => `Build a complete topical authority map for ${v.business} in the "${v.niche}" niche.
+
+NICHE: ${v.niche}
+BUSINESS: ${v.business}
+SITE STAGE: ${v.stage}
+CLUSTERS NEEDED: ${v.cluster}
+
+Deliver:
+1. TOPICAL AUTHORITY OVERVIEW — what topics ${v.business} should own and why
+2. KEYWORD CLUSTERS — group 50 keywords into clusters, each with:
+   - Cluster name / theme
+   - 1 pillar page keyword (high volume, broad)
+   - 5–8 supporting article keywords (specific, long-tail)
+   - Internal linking direction (spokes link to hub)
+3. SEARCH VOLUME + DIFFICULTY ESTIMATES — rough tiers for each cluster (High/Med/Low)
+4. PUBLISHING ROADMAP — 6-month schedule:
+   - Month 1–2: Foundation (which clusters to start)
+   - Month 3–4: Expansion (adding depth)
+   - Month 5–6: Authority push (competitive terms)
+5. QUICK WIN KEYWORDS — 5 low-competition terms to rank for in first 30 days
+6. PILLAR PAGE BRIEFS — one-paragraph brief for each pillar page
+
+Prioritise by: search volume × buyer intent ÷ difficulty.`,
+    framework: [
+      { title: 'Hub and Spoke Architecture', body: 'Pillar page (broad topic, 3,000+ words) → 5–10 cluster pages (specific sub-topics, 1,000–1,500 words each) → all cluster pages link back to pillar. Google sees you as the authority on the whole topic.' },
+      { title: 'Topical Coverage = Trust Signal', body: 'A site that covers every aspect of a topic ranks better than a site with one great page. Depth across a cluster beats a single piece of long-form content.' },
+      { title: 'Quick Win First Strategy', body: 'For new sites: start with long-tail, low-competition keywords. Build 10–20 easy rankings before targeting competitive terms. Early wins send positive signals to Google.' }
+    ]
+  },
+
+  // ── MARKETING & SALES ──
+  {
+    id: 'lead-magnet-funnel',
+    title: 'Lead Magnet Funnel',
+    category: 'growth',
+    icon: '\uD83E\uDDF2',
+    desc: 'Generate 10 lead magnet ideas ranked by conversion potential, with format, hook and funnel path for each.',
+    tags: ['Lead Generation', 'Funnel', 'Opt-in', 'Lead Magnets'],
+    fields: [
+      { id: 'niche', label: 'Niche / Industry', type: 'text', placeholder: 'e.g. Fitness & Personal Training' },
+      { id: 'product', label: 'Core Product / Service', type: 'text', placeholder: 'e.g. 12-week transformation programme' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Busy professionals in Dubai, 30–50' },
+      { id: 'platform', label: 'Primary Platform', type: 'select', options: ['Instagram', 'LinkedIn', 'Facebook', 'Email list', 'Website / blog', 'WhatsApp'] }
+    ],
+    prompt: (v) => `Generate 10 lead magnet ideas for ${v.niche} that naturally funnel into purchasing ${v.product}.
+
+NICHE: ${v.niche}
+PRODUCT: ${v.product}
+TARGET AUDIENCE: ${v.audience}
+PLATFORM: ${v.platform}
+
+For each of the 10 lead magnets deliver:
+1. TITLE — specific, outcome-focused, with a number or timeframe
+2. FORMAT — PDF / Quiz / Template / Checklist / Email course / Swipe file / Video / Other
+3. ONE-LINE HOOK — the sentence that makes someone want it immediately
+4. TIME TO CREATE — estimate in hours
+5. CONVERSION POTENTIAL — Low / Medium / High (rank 1–10 at end)
+6. THE BRIDGE — one sentence on how it naturally leads to ${v.product}
+7. OPT-IN CTA — the button text and form headline
+
+Then rank all 10 by conversion potential (highest to lowest) with a brief reason why each ranks where it does.
+
+Focus on lead magnets that take under 2 hours to create. Quick wins over elaborate productions.`,
+    framework: [
+      { title: '10 Lead Magnet Types', body: 'Checklist, cheat sheet, template, swipe file, quiz, mini-course, free audit, case study collection, resource library, video training. Match format to audience patience level.' },
+      { title: 'The Natural Bridge Test', body: 'Ask: "Would someone who found this lead magnet useful naturally want my paid product next?" If yes, it\'s a good magnet. If no, it attracts the wrong audience.' },
+      { title: 'Conversion Potential Ranking Factors', body: 'High: Solves an immediate pain. Delivers in minutes. Has a clear next step. Low: Educational only. No urgency. No path to purchase.' }
+    ]
+  },
+  {
+    id: 'cold-email-pas',
+    title: 'Cold Email — PAS Sequence',
+    category: 'outreach',
+    icon: '\uD83D\uDCE8',
+    desc: 'Write a 3-email cold sequence using the PAS framework with subject lines at 40%+ open rate potential.',
+    tags: ['Cold Email', 'PAS', 'Sequences', 'Personalization'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Social media management for beauty brands' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Beauty salon owners in the UAE' },
+      { id: 'pain', label: 'Biggest Pain Point', type: 'text', placeholder: 'e.g. Not getting clients from Instagram despite posting daily' },
+      { id: 'sender', label: 'Sender Name / Company', type: 'text', placeholder: 'e.g. Plamena / Socinest Global' }
+    ],
+    prompt: (v) => `Write a 3-email cold outreach sequence for ${v.sender} using the PAS framework.
+
+PRODUCT/SERVICE: ${v.product}
+TARGET AUDIENCE: ${v.audience}
+PAIN POINT: ${v.pain}
+SENDER: ${v.sender}
+
+Structure:
+EMAIL 1 (Day 0) — Problem: Open with their specific pain, no intro, no fluff
+EMAIL 2 (Day 3) — Agitate: Deepen the pain with consequences, add a proof point
+EMAIL 3 (Day 6) — Solution: Introduce the offer with social proof, low-friction CTA
+
+For each email:
+- SUBJECT LINE (aim for 40%+ open rate — curiosity or pain-based)
+- SUBJECT LINE B VARIANT (A/B test option)
+- PREVIEW TEXT (the line shown before opening)
+- FULL EMAIL BODY (5–8 sentences max, sounds human)
+- PERSONALIZATION VARIABLE — one thing to customise per prospect
+- SEND TIMING — exact day and recommended send time
+
+End with a FOLLOW-UP VOICEMAIL SCRIPT for after Email 2 if no reply.
+
+Rules: No "I hope this email finds you well". No feature lists. One ask per email.`,
+    framework: [
+      { title: 'PAS Cold Email Structure', body: 'Email 1: Name their exact pain (no intro). Email 2: Show what happens if they ignore it (consequence + proof). Email 3: Here\'s the solution + low-ask CTA.' },
+      { title: '40%+ Open Rate Subject Lines', body: 'Pain-based: "Still struggling with [specific problem]?" Curiosity: "Something I noticed about [their business]". Personal: "[Their name] — quick thought". Never: "Following up" or "Introduction".' },
+      { title: 'The Voicemail Bridge', body: '20-second voicemail after Email 2 increases reply rate by 30%+. Reference the email, ask one specific question, leave your number. Keep it casual, not salesy.' }
+    ]
+  },
+  {
+    id: 'objection-matrix',
+    title: 'Objection Handling Matrix',
+    category: 'strategy',
+    icon: '\uD83D\uDEE1',
+    desc: 'Map every buying objection by type with counter-arguments and where to place each on your landing page.',
+    tags: ['Objections', 'Sales Copy', 'Conversion', 'Landing Pages'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Monthly social media management, AED 3,000/mo' },
+      { id: 'audience', label: 'Buyer Profile', type: 'text', placeholder: 'e.g. Small business owners in UAE, budget-conscious' },
+      { id: 'price', label: 'Price Point', type: 'text', placeholder: 'e.g. AED 3,000/month' }
+    ],
+    prompt: (v) => `List 15 objections people have before buying ${v.product} and build a complete objection-handling matrix.
+
+PRODUCT: ${v.product}
+BUYER PROFILE: ${v.audience}
+PRICE: ${v.price}
+
+For each of the 15 objections:
+1. OBJECTION — the exact words a prospect thinks or says
+2. OBJECTION TYPE — Price / Trust / Timing / Competition / Need / Authority / Risk
+3. ONE-LINER COUNTER — a single powerful sentence to neutralise it
+4. EXPANDED RESPONSE — 2–3 sentences for sales calls or chat
+5. LANDING PAGE PLACEMENT — exactly where on the page to address this (Hero / FAQ / Near CTA / Testimonials section / Pricing section)
+6. COPY ELEMENT THAT ADDRESSES IT — type of element to use (testimonial, stat, guarantee, comparison, story, social proof)
+
+End with a LANDING PAGE OBJECTION MAP — a visual layout showing which objections to address in each section of the page, in what order.
+
+Organise by: Price objections first (most common), then Trust, then Timing, then Competition, then Need.`,
+    framework: [
+      { title: 'Objection Type Matrix', body: 'Price ("too expensive") → Show ROI. Trust ("I don\'t know you") → Show proof. Timing ("not now") → Create urgency. Competition ("using someone else") → Differentiate. Need ("don\'t need it") → Agitate pain.' },
+      { title: 'Address Objections Before They\'re Raised', body: 'The best landing pages neutralise objections before the prospect even thinks them. Map your top 5 objections to specific page sections — don\'t wait for the FAQ.' },
+      { title: 'One-Liner Counter Formula', body: '"I understand — [validate]. Here\'s what [proof/fact/result] shows: [counter]. That\'s why [customers similar to them] chose us." Validate → evidence → bridge.' }
+    ]
+  },
+  {
+    id: 'viral-loop',
+    title: 'Viral Loop Strategy',
+    category: 'growth',
+    icon: '\uD83D\uDD04',
+    desc: 'Design a referral and viral loop strategy — trigger, incentive, tracking, K-factor projection.',
+    tags: ['Viral Growth', 'Referral', 'K-Factor', 'Word of Mouth'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Fitness transformation programme' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Peak Performance UAE' },
+      { id: 'currentClients', label: 'Current Client Base', type: 'select', options: ['Under 20 clients', '20–100 clients', '100–500 clients', '500+ clients'] },
+      { id: 'incentive', label: 'Budget for Incentives', type: 'select', options: ['No budget (non-monetary only)', 'Low (under AED 200/referral)', 'Medium (AED 200–500/referral)', 'High (AED 500+/referral or % discount)'] }
+    ],
+    prompt: (v) => `Create a viral loop strategy for ${v.business} that gets each user to bring in 1.5 new users through the product itself.
+
+PRODUCT: ${v.product}
+BUSINESS: ${v.business}
+CURRENT CLIENT BASE: ${v.currentClients}
+INCENTIVE BUDGET: ${v.incentive}
+
+Deliver:
+1. VIRAL LOOP DESIGN — step-by-step diagram of how the loop works (trigger → share → new user → activation)
+2. REFERRAL TRIGGER POINT — the exact moment in the customer journey to ask for a referral (and why that moment)
+3. INCENTIVE STRUCTURE — what you offer referrers AND referees (two-sided incentive)
+4. SHARE MECHANISM — exactly how the referral happens (DM template, link, story share, etc.)
+5. TRACKING IMPLEMENTATION — how to track referrals (without expensive tools)
+6. K-FACTOR PROJECTION — if 100 clients each refer 0.3 people, what does growth look like over 6 months?
+7. ACTIVATION SEQUENCE — what happens to the referred lead to convert them quickly
+8. SOCIAL SHARE COPY — 3 ready-to-send referral message templates for clients to use
+
+Target K-factor: 1.5 (each user brings 1.5 new users on average).`,
+    framework: [
+      { title: 'K-Factor Formula', body: 'K = (invitations sent per user) × (conversion rate of invitations). K > 1 = viral growth. K = 0.5 = slow but useful. Even K = 0.3 adds 30% to organic growth.' },
+      { title: 'Two-Sided Incentive Rule', body: 'Referrer gets rewarded. Referee gets a reason to try. One-sided incentives halve your conversion. "Give a friend AED 200 off and get AED 200 credit yourself" outperforms "get AED 200 for every referral" alone.' },
+      { title: 'Trigger Point Timing', body: 'Ask for a referral at peak satisfaction — after first result, after a compliment, after a milestone. Never ask a new client. Ask a happy one.' }
+    ]
+  },
+  {
+    id: 'headlines-ab',
+    title: 'Landing Page Headlines',
+    category: 'copy',
+    icon: '\uD83D\uDCDD',
+    desc: 'Write 5 landing page headlines using AIDA, PAS, Before/After, Social Proof and Urgency frameworks with A/B priority ranking.',
+    tags: ['Headlines', 'A/B Testing', 'Landing Pages', 'Frameworks'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Social media management for UAE businesses' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Dubai restaurant owners' },
+      { id: 'outcome', label: 'Primary Outcome / Benefit', type: 'text', placeholder: 'e.g. More bookings, less stress managing social' },
+      { id: 'tone', label: 'Brand Tone', type: 'select', options: ['Bold & direct', 'Warm & conversational', 'Luxury & refined', 'Energetic & motivational', 'Professional & trustworthy'] }
+    ],
+    prompt: (v) => `Write 5 landing page headlines for ${v.product} using 5 different proven frameworks.
+
+PRODUCT: ${v.product}
+AUDIENCE: ${v.audience}
+PRIMARY OUTCOME: ${v.outcome}
+TONE: ${v.tone}
+
+Deliver 5 complete headline sets, one per framework:
+
+FRAMEWORK 1 — AIDA (Attention, Interest, Desire, Action)
+FRAMEWORK 2 — PAS (Problem, Agitate, Solution)
+FRAMEWORK 3 — Before/After (contrast the current state with the ideal outcome)
+FRAMEWORK 4 — Social Proof (lead with results or credibility)
+FRAMEWORK 5 — Urgency (time-sensitive or scarcity angle)
+
+For each headline set:
+- H1 HEADLINE (the main headline — punchy, under 10 words ideally)
+- SUBHEADLINE (expands on the H1, 1–2 sentences, includes the key benefit)
+- CTA BUTTON TEXT (3–5 words, action-oriented)
+- WHY THIS WORKS — one sentence explaining the psychological mechanism
+
+End with:
+A/B TEST PRIORITY RANKING — rank all 5 from highest to lowest conversion potential for this specific audience, with a brief reason for each ranking.`,
+    framework: [
+      { title: 'The 10-Word Rule', body: 'The best headlines are under 10 words. Every extra word dilutes the impact. If you can\'t say it in 10 words, you don\'t understand your offer well enough yet.' },
+      { title: 'Headline Framework Match', body: 'AIDA: high awareness audiences. PAS: pain-aware audiences. Before/After: aspiration-driven audiences. Social Proof: trust-skeptical audiences. Urgency: high-intent, hesitating audiences.' },
+      { title: 'A/B Test Headlines First', body: 'Headline is the highest-leverage element to test. A 20% improvement in headline CTR affects every conversion downstream. Test headline before anything else.' }
+    ]
+  },
+  {
+    id: 'referral-programme',
+    title: 'Referral Programme',
+    category: 'growth',
+    icon: '\uD83E\uDD1D',
+    desc: 'Design a complete referral programme — incentive structure, tracking, tiered rewards, viral share copy and projected ROI.',
+    tags: ['Referral', 'Word of Mouth', 'Rewards', 'ROI'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Property management packages' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Atlas Property Group' },
+      { id: 'ltv', label: 'Average Client LTV', type: 'text', placeholder: 'e.g. AED 24,000/year' },
+      { id: 'clients', label: 'Current Active Clients', type: 'select', options: ['Under 10', '10–50', '50–200', '200+'] }
+    ],
+    prompt: (v) => `Design a complete referral programme for ${v.business}.
+
+PRODUCT: ${v.product}
+BUSINESS: ${v.business}
+CLIENT LTV: ${v.ltv}
+ACTIVE CLIENTS: ${v.clients}
+
+Deliver:
+1. PROGRAMME NAME + TAGLINE — something clients will remember and share
+2. INCENTIVE STRUCTURE — what referrers receive (cash, credit, upgrade, gift)
+3. REFEREE INCENTIVE — what the referred client receives to reduce friction
+4. TIERED REWARDS — milestone badges/levels (e.g. 1 referral, 3 referrals, 5+ referrals)
+5. TRACKING PLAN — how to track referrals without expensive software (UTM links, referral codes, form question)
+6. EMAIL TEMPLATES FOR REFERRERS — 2 ready-to-send emails clients can forward to contacts
+7. VIRAL SHARE COPY — 3 social media caption templates for clients to post
+8. PROGRAMME ANNOUNCEMENT EMAIL — the email to send to all current clients to launch
+9. PROJECTED ROI — if 20% of ${v.clients} clients each refer 1 person, what does that add in revenue given LTV of ${v.ltv}?
+10. PROGRAMME RULES — key terms to prevent abuse
+
+Make the programme feel premium, not cheap. It should feel like an exclusive club, not a discount scheme.`,
+    framework: [
+      { title: 'Premium Referral Positioning', body: 'Don\'t call it a "referral programme". Call it "The [Brand] Inner Circle" or "Partner Programme". Premium names attract premium referrals.' },
+      { title: 'Tier System Psychology', body: 'Bronze → Silver → Gold tiers trigger the goal-gradient effect: people work harder when they can see the next level. 3 tiers is optimal — more creates confusion.' },
+      { title: 'Referral ROI Calculation', body: 'If 20% of clients refer 1 person each and LTV is X: Referral revenue = 0.2 × clients × LTV. Subtract incentive cost. Most referral programmes deliver 3–5x ROI on incentives.' }
+    ]
+  },
+
+  // ── LANDING PAGES & COPY ──
+  {
+    id: 'above-fold-copy',
+    title: 'Above-the-Fold Copy',
+    category: 'copy',
+    icon: '⬆',
+    desc: 'Write above-the-fold copy that communicates value in 3 seconds — 3 variations for A/B testing.',
+    tags: ['Above-the-Fold', 'Hero Section', 'A/B Test', 'Conversion'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. AI-powered social media management' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. UAE SME business owners' },
+      { id: 'benefit', label: 'Top Benefit / Outcome', type: 'text', placeholder: 'e.g. Consistent content without the effort' },
+      { id: 'proof', label: 'Best Social Proof Point', type: 'text', placeholder: 'e.g. 50+ UAE businesses, 3x average engagement growth' }
+    ],
+    prompt: (v) => `Write above-the-fold copy for ${v.product} that communicates value in under 3 seconds.
+
+PRODUCT: ${v.product}
+AUDIENCE: ${v.audience}
+TOP BENEFIT: ${v.benefit}
+SOCIAL PROOF: ${v.proof}
+
+Deliver 3 complete above-the-fold variations for A/B testing:
+
+VARIATION 1 — Benefit-Led (lead with the outcome they want)
+VARIATION 2 — Curiosity-Led (open a pattern interrupt or intriguing hook)
+VARIATION 3 — Social Proof-Led (lead with credibility and results)
+
+For each variation:
+- HEADLINE (H1) — under 10 words, punchy
+- SUBHEADLINE — 1–2 sentences expanding the headline, includes the key benefit
+- CTA BUTTON TEXT — 3–5 words, action-oriented
+- SOCIAL PROOF LINE — one line under or near the CTA (e.g. "Trusted by 50+ UAE businesses")
+- HERO IMAGE DIRECTION — what the hero image/visual should show to reinforce the headline
+- EMOTIONAL HOOK — what feeling this variation triggers and why it converts
+
+End with: RECOMMENDED A/B TEST ORDER — which to test first vs second vs third, and why.`,
+    framework: [
+      { title: 'The 3-Second Value Test', body: 'Cover your logo and ask: "What does this site do and who is it for?" If you can\'t answer in 3 seconds, your above-the-fold copy is failing. Fix the H1 first.' },
+      { title: '3 Variation Strategy', body: 'Benefit-led wins for warm traffic. Curiosity-led wins for cold/social traffic. Social proof-led wins for high-skepticism audiences. Test in this order for most businesses.' },
+      { title: 'Social Proof Line Placement', body: 'Place the social proof line directly under or beside your CTA button. This is where trust anxiety is highest — counter it at the exact decision moment.' }
+    ]
+  },
+  {
+    id: 'testimonial-engine',
+    title: 'Testimonial Engine',
+    category: 'copy',
+    icon: '⭐',
+    desc: 'Generate 10 testimonial request emails that make it easy for clients to write specific, believable praise.',
+    tags: ['Testimonials', 'Social Proof', 'Email Templates', 'Reviews'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'service', label: 'Service Delivered', type: 'text', placeholder: 'e.g. Social media management for 3 months' },
+      { id: 'result', label: 'Typical Result Achieved', type: 'text', placeholder: 'e.g. 3x follower growth, consistent bookings from Instagram' },
+      { id: 'platform', label: 'Where to Collect Reviews', type: 'select', options: ['Google Business', 'Facebook', 'Instagram (story screenshot)', 'LinkedIn recommendation', 'Direct quote for website', 'Video testimonial', 'All of the above'] }
+    ],
+    prompt: (v) => `Create a complete testimonial collection system for ${v.business}.
+
+BUSINESS: ${v.business}
+SERVICE: ${v.service}
+TYPICAL RESULT: ${v.result}
+REVIEW PLATFORM: ${v.platform}
+
+Deliver:
+1. 10 TESTIMONIAL REQUEST EMAILS — each with a different angle:
+   - Different timing (after first win, after 1 month, after project end, etc.)
+   - Different framing (casual, professional, results-focused, story-led)
+   
+   For each email:
+   - Subject line
+   - Full email body (short, warm, easy to say yes to)
+   - What makes this version effective
+
+2. PRE-WRITTEN TESTIMONIAL TEMPLATE — a fill-in-the-blanks template clients can edit:
+   "I was [situation] before working with [business]. After [service], I [specific result]. What surprised me most was [unexpected benefit]. I'd recommend [business] to anyone who [ideal client description]."
+
+3. GUIDE QUESTIONS — 5 specific questions to ask clients that produce specific, believable praise (not generic "great service!")
+
+4. FOLLOW-UP CADENCE — if no reply to Email 1, what to send on Day 4 and Day 8
+
+5. TESTIMONIAL PLACEMENT GUIDE — where to use each type of testimonial on your website and marketing`,
+    framework: [
+      { title: 'The Specific Testimonial Formula', body: '"I was [before state]. After [specific action], I got [specific result with number]. [Business name] helped me [specific benefit]." Vague testimonials hurt trust. Specific ones sell.' },
+      { title: 'Guide Questions Beat Open Requests', body: '"Would you write a review?" gets generic responses. "What was the one thing that surprised you most about working with us?" gets quotable gold. Always give questions, not blank requests.' },
+      { title: 'Timing is Everything', body: 'Ask at peak happiness: right after first result, after a visible win, when they compliment you in a call. Set a reminder system — don\'t rely on memory.' }
+    ]
+  },
+  {
+    id: 'pricing-page-copy',
+    title: 'Pricing Page + FAQ',
+    category: 'copy',
+    icon: '\uD83D\uDCB3',
+    desc: 'Create a full pricing page with FAQ that addresses top 5 buying objections, comparison table and trust signals near CTA.',
+    tags: ['Pricing Page', 'FAQ', 'Objections', 'CRO'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Social media management packages' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'tiers', label: 'Number of Pricing Tiers', type: 'select', options: ['1 price (single offer)', '2 tiers', '3 tiers', '4+ tiers'] },
+      { id: 'price', label: 'Price Range', type: 'text', placeholder: 'e.g. AED 1,500 – AED 5,500/month' },
+      { id: 'competitor', label: 'Main Competitor (for comparison)', type: 'text', placeholder: 'e.g. Hiring an in-house social media manager' }
+    ],
+    prompt: (v) => `Create a complete pricing page with FAQ for ${v.business}.
+
+PRODUCT: ${v.product}
+BUSINESS: ${v.business}
+PRICING TIERS: ${v.tiers}
+PRICE RANGE: ${v.price}
+COMPARISON AGAINST: ${v.competitor}
+
+Deliver:
+1. PRICING PAGE HEADLINE + SUBHEADLINE — must reduce anxiety and set context
+2. PACKAGE NAMES + DESCRIPTIONS — outcome-focused names, benefit-led descriptions for each tier
+3. FEATURE/BENEFIT TABLE — what's included in each tier (presented as benefits, not features)
+4. "MOST POPULAR" BADGE COPY — the line that goes on the recommended tier
+5. COMPETITOR COMPARISON TABLE — ${v.business} vs ${v.competitor} (show why you win)
+6. FAQ SECTION — 8 questions addressing the TOP 5 buying objections:
+   - Price objection (is it worth it?)
+   - Trust objection (have you done this before?)
+   - Timing objection (when will I see results?)
+   - Risk objection (what if it doesn't work?)
+   - Commitment objection (am I locked in?)
+   + 3 practical questions
+7. MONEY-BACK GUARANTEE BADGE COPY — short, confident, reassuring
+8. TRUST SIGNALS NEAR CTA — 3 elements to place right next to the "Get Started" button
+9. CTA BUTTON VARIANTS — 3 options to A/B test`,
+    framework: [
+      { title: 'Pricing Page Anxiety Points', body: 'Buyers feel maximum anxiety at 3 moments: seeing the price, reaching the CTA button, and reading the commitment terms. Address all 3 with trust signals and risk reversal.' },
+      { title: 'The Comparison Table Edge', body: 'Compare against the alternative your prospect is actually considering (usually: doing it themselves, hiring someone, or a direct competitor). You always win when you define the comparison.' },
+      { title: 'FAQ as Objection Handling', body: 'Every FAQ answer is a stealth objection handler. Write each answer as if you\'re responding to a skeptic, not answering an information request.' }
+    ]
+  },
+  {
+    id: 'case-study-template',
+    title: 'Case Study Builder',
+    category: 'copy',
+    icon: '\uD83D\uDCCA',
+    desc: 'Write a case study with challenge/solution/results structure, interview questions, pull quote and SEO-optimised title.',
+    tags: ['Case Studies', 'Social Proof', 'Storytelling', 'SEO'],
+    fields: [
+      { id: 'client', label: 'Client Name / Type', type: 'text', placeholder: 'e.g. Dubai luxury gym, 3 locations' },
+      { id: 'business', label: 'Your Business', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'service', label: 'Service Provided', type: 'text', placeholder: 'e.g. Full social media management + content' },
+      { id: 'result', label: 'Key Result Achieved', type: 'text', placeholder: 'e.g. 4x Instagram followers, 60% increase in bookings in 90 days' },
+      { id: 'timeframe', label: 'Project Timeframe', type: 'text', placeholder: 'e.g. 90 days' }
+    ],
+    prompt: (v) => `Write a complete case study for ${v.business} featuring ${v.client}.
+
+YOUR BUSINESS: ${v.business}
+CLIENT: ${v.client}
+SERVICE: ${v.service}
+KEY RESULT: ${v.result}
+TIMEFRAME: ${v.timeframe}
+
+Deliver the FULL case study:
+
+1. SEO-OPTIMISED TITLE FORMAT — 3 title options (keyword-rich, result-forward)
+2. EXECUTIVE SUMMARY — 3 sentences: who the client is, what the challenge was, what the result was
+3. THE CHALLENGE SECTION — paint the before state in detail (pain, frustration, what they'd tried before)
+4. THE SOLUTION SECTION — what ${v.business} did, step-by-step, with specific details
+5. THE RESULTS SECTION — numbers front and centre: ${v.result} — with context on why this matters
+6. PULL QUOTE — the one-sentence client quote that sells this case study (write a template they can fill in)
+7. VISUAL LAYOUT WIREFRAME — section-by-section layout description for the web page
+8. INTERVIEW QUESTIONS — 10 questions to ask the client to get the content for this case study
+9. DISTRIBUTION COPY — Instagram caption + LinkedIn post to promote this case study
+
+Format the case study as a complete, publish-ready document.`,
+    framework: [
+      { title: 'Challenge → Solution → Results Structure', body: 'This is the only structure that matters. Challenge makes the reader identify. Solution builds credibility. Results prove it works. Never skip or combine sections.' },
+      { title: 'Numbers Make Case Studies Real', body: '"Better results" is useless. "4x follower growth and 60% more bookings in 90 days" is a selling machine. Every case study needs at least 3 specific metrics.' },
+      { title: 'Pull Quote Formula', body: '"Before [business name], I was [painful before state]. Now [specific result]. [Unexpected benefit]." Train clients to give you this exact format with interview questions.' }
+    ]
+  },
+  {
+    id: 'homepage-wireframe',
+    title: 'Homepage Wireframe',
+    category: 'copy',
+    icon: '\uD83D\uDDA5',
+    desc: 'Design a homepage wireframe with every section mapped — purpose, word count, emotion, scroll depth and CTA logic.',
+    tags: ['Wireframe', 'Homepage', 'UX', 'Conversion Architecture'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Full-service digital growth agency' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'audience', label: 'Primary Audience', type: 'text', placeholder: 'e.g. UAE business owners wanting growth online' },
+      { id: 'goal', label: 'Primary Conversion Goal', type: 'text', placeholder: 'e.g. Book a discovery call' },
+      { id: 'traffic', label: 'Main Traffic Source', type: 'select', options: ['Instagram / Social organic', 'Paid ads', 'Google SEO', 'Referrals / Word of mouth', 'Cold outreach', 'Mixed'] }
+    ],
+    prompt: (v) => `Design a complete homepage wireframe in text for ${v.business}.
+
+BUSINESS: ${v.business}
+PRODUCT/SERVICE: ${v.product}
+PRIMARY AUDIENCE: ${v.audience}
+CONVERSION GOAL: ${v.goal}
+MAIN TRAFFIC SOURCE: ${v.traffic}
+
+For EVERY section of the homepage, deliver:
+- SECTION NAME
+- PURPOSE — what job this section does in the conversion journey
+- WORD COUNT TARGET — how much copy this section needs
+- EMOTION TO TRIGGER — what the visitor should feel after this section
+- SCROLL DEPTH — what % of visitors typically reach this section
+- KEY COPY ELEMENT — headline, body, or element this section must include
+- CTA PRESENCE — yes/no, and if yes, what type
+
+Design the wireframe for BOTH:
+- DESKTOP — full section layout with relative proportions
+- MOBILE — what changes above the fold and in section order
+
+End with:
+- CTA PLACEMENT LOGIC — exactly where to place CTAs and why (psychological reasoning)
+- CONVERSION-OPTIMISED SECTION ORDER — the recommended scroll sequence for ${v.traffic} traffic
+- SECTIONS TO REMOVE — 2–3 elements most homepages include that actually hurt conversion`,
+    framework: [
+      { title: 'Scroll Depth Reality', body: '100% see above fold. ~80% reach section 2. ~50% reach section 3. ~20% reach the bottom. Put your strongest CTA at section 2, not just at the bottom.' },
+      { title: 'Homepage Sections That Convert', body: 'Hero → Problem → Solution → Services → Proof → Process → Pricing/CTA → Final CTA. Each section earns the right to the next. Don\'t skip proof.' },
+      { title: 'Mobile-First Architecture', body: 'On mobile, above fold = everything. Navigation disappears. Long sections become walls of text. Design the mobile experience first, then expand for desktop.' }
+    ]
+  },
+  {
+    id: 'microcopy',
+    title: 'Microcopy Suite',
+    category: 'copy',
+    icon: '✏',
+    desc: 'Write microcopy for empty states, error messages, success confirmations, tooltips and onboarding — in 3 voice variations.',
+    tags: ['Microcopy', 'UX Writing', 'Onboarding', 'Error Messages'],
+    fields: [
+      { id: 'product', label: 'Product / Service / App', type: 'text', placeholder: 'e.g. Client portal for Socinest Global' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'voice', label: 'Brand Voice', type: 'select', options: ['Friendly & warm', 'Professional & polished', 'Playful & witty', 'Bold & direct', 'Luxury & refined'] },
+      { id: 'focus', label: 'Microcopy Focus Area', type: 'select', options: ['Full suite (all types)', 'Onboarding flow', 'Error & validation messages', 'Empty states', 'Success confirmations', 'Tooltips & helper text', 'Form labels & placeholders'] }
+    ],
+    prompt: (v) => `Write a complete microcopy suite for ${v.product} by ${v.business}.
+
+PRODUCT: ${v.product}
+BRAND VOICE: ${v.voice}
+FOCUS: ${v.focus}
+
+For each microcopy type below, write 3 variations — Friendly, Professional, and Playful — so I can choose what fits best:
+
+1. EMPTY STATES (when there's no data yet — e.g. "No posts yet")
+   - Dashboard empty state
+   - Inbox/messages empty state
+   - Results/search empty state
+
+2. ERROR MESSAGES
+   - Form validation error (e.g. invalid email)
+   - Payment failed
+   - Page not found (404)
+   - Generic system error
+
+3. SUCCESS CONFIRMATIONS
+   - Form submitted
+   - Payment successful
+   - Profile/account saved
+   - File uploaded
+
+4. TOOLTIPS / HELPER TEXT
+   - Explaining a technical feature
+   - Explaining a pricing term
+   - Explaining a form field
+
+5. ONBOARDING HINTS
+   - Welcome message (first login)
+   - First action prompt
+   - Progress encouragement (e.g. "You're 70% done!")
+
+For each: write all 3 voice variations. Mark which context each fits best.
+Primary voice to use throughout: ${v.voice}.`,
+    framework: [
+      { title: 'Microcopy as Conversion Tool', body: 'The text on a button, an error message, or a tooltip isn\'t decoration — it\'s part of the conversion path. "Submit" converts less than "Get My Free Audit". Always test microcopy.' },
+      { title: '3-Voice Framework', body: 'Friendly: like a helpful colleague. Professional: like a trusted advisor. Playful: like a witty friend. Most brands need Friendly as their base with touches of one of the others.' },
+      { title: 'Error Message Best Practice', body: 'Never say "Invalid input". Say "Hmm, that doesn\'t look like an email address — try: name@company.com". Be specific, be helpful, never blame the user.' }
+    ]
+  },
+  // ── LANDING PAGES & COPY ──
+  {
+    id: 'lp-above-fold',
+    title: 'Above-the-Fold Copy',
+    category: 'copy',
+    icon: '\uD83D\uDDA5',
+    desc: 'Write hero copy that communicates value in 3 seconds — with A/B headline variations, CTAs, and social proof lines.',
+    tags: ['Hero Copy', 'A/B Testing', 'Headlines', 'CTA'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Social media management for UAE businesses' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Dubai business owners 25–45' },
+      { id: 'outcome', label: 'Primary Outcome You Deliver', type: 'text', placeholder: 'e.g. More bookings, less time on social' },
+      { id: 'proof', label: 'Key Proof Point', type: 'text', placeholder: 'e.g. 50+ clients, 4.9★ reviews, avg 3x engagement increase' },
+      { id: 'cta', label: 'CTA Goal', type: 'text', placeholder: 'e.g. Book a free discovery call' }
+    ],
+    prompt: (v) => `You are a senior conversion copywriter. Write above-the-fold copy for ${v.product} that communicates the value in 3 seconds.
+
+PRODUCT/SERVICE: ${v.product}
+TARGET AUDIENCE: ${v.audience}
+PRIMARY OUTCOME: ${v.outcome}
+PROOF POINT: ${v.proof}
+CTA GOAL: ${v.cta}
+
+Deliver 3 complete above-the-fold variations:
+
+VARIATION 1 — Benefit-led
+- Headline (max 8 words)
+- Subheadline (1 sentence, amplifies the headline)
+- CTA button text
+- Social proof line (below CTA)
+- Hero image direction
+
+VARIATION 2 — Curiosity-led
+(same structure)
+
+VARIATION 3 — Social-proof-led
+(same structure)
+
+After the 3 variations:
+- A/B TEST PRIORITY: which element to test first and why
+- HERO IMAGE BRIEF: what to show in the background/hero image for maximum conversion
+- MOBILE NOTE: how to adapt the copy for mobile (shorter headline, CTA placement)`,
+    framework: [
+      { title: 'The 3-Second Value Test', body: 'A stranger should understand exactly what you do, who it\'s for, and why it\'s better — within 3 seconds of landing. If they can\'t, rewrite.' },
+      { title: 'Headline Formula Options', body: 'Benefit: "Get [outcome] without [pain]". Question: "Tired of [problem]?" Specific: "Grow your [X] by [Y]% in [timeframe]". Social proof: "Join 500+ [audience] who…"' },
+      { title: 'Social Proof Line Placement', body: 'Put the social proof line directly below the CTA button. "Trusted by 200+ UAE businesses" reduces friction at the exact moment of hesitation.' },
+      { title: 'CTA Button Copy', body: '"Get Started" is lazy. Use outcome-based CTAs: "Book My Free Audit", "Start Growing Today", "See My Options". First-person CTAs ("My") convert 10–20% higher.' }
+    ]
+  },
+  {
+    id: 'lp-testimonial-request',
+    title: 'Testimonial Requests',
+    category: 'copy',
+    icon: '⭐',
+    desc: 'Generate 10 testimonial request emails that make it easy for clients to write specific, believable praise — with templates and follow-up cadence.',
+    tags: ['Testimonials', 'Social Proof', 'Email', 'Client Comms'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'service', label: 'Service Delivered', type: 'text', placeholder: 'e.g. Social media management + landing page' },
+      { id: 'clientType', label: 'Type of Client', type: 'text', placeholder: 'e.g. Beauty salon owner, Dubai' },
+      { id: 'result', label: 'Result / Outcome Achieved', type: 'text', placeholder: 'e.g. Grew from 500 to 2,800 followers in 60 days' },
+      { id: 'platform', label: 'Where Review Should Go', type: 'select', options: ['Google Business', 'Instagram DM / story', 'LinkedIn recommendation', 'Trustpilot', 'Facebook review', 'Video testimonial', 'Written quote for website'] }
+    ],
+    prompt: (v) => `You are an expert at requesting client testimonials that convert. Create a testimonial request system for ${v.business}.
+
+BUSINESS: ${v.business}
+SERVICE DELIVERED: ${v.service}
+CLIENT TYPE: ${v.clientType}
+RESULT ACHIEVED: ${v.result}
+REVIEW PLATFORM: ${v.platform}
+
+Deliver:
+
+1. OUTREACH EMAIL (initial ask) — warm, specific, easy to say yes to
+2. PRE-WRITTEN TEMPLATE — a draft testimonial the client can edit (so they don't stare at a blank page). Include: their challenge before, the service experience, the result, who they'd recommend it to.
+3. GUIDING QUESTIONS — 5 questions to help them write something specific and compelling (not generic praise)
+4. FOLLOW-UP SEQUENCE — 2 follow-up messages if they don't respond (Day 3, Day 7)
+5. SPECIFIC ASKS — how to request they mention: the result number, the before/after, their industry, so the testimonial is credible to future clients like them
+
+Tone: warm, grateful, zero pressure.`,
+    framework: [
+      { title: 'Why Most Testimonial Requests Fail', body: '"Can you write us a review?" is too open. Clients freeze. Give them a template, guiding questions, and the exact platform. Reduce friction to near zero.' },
+      { title: 'The 3-Part Testimonial Formula', body: '"Before I worked with [X], I struggled with [problem]. After [timeframe], I achieved [specific result]. I\'d recommend them to anyone who wants [outcome]."' },
+      { title: 'Timing Is Everything', body: 'Request at peak happiness: right after a result, a launch, or a milestone. Not 3 months later when the excitement fades. Strike while the emotion is hot.' },
+      { title: 'Specificity = Credibility', body: '"Great service!" is ignored. "Went from 400 to 2,100 followers in 6 weeks" gets read and believed. Always coach clients to include numbers and timeframes.' }
+    ]
+  },
+  {
+    id: 'lp-pricing-page',
+    title: 'Pricing Page Copy',
+    category: 'copy',
+    icon: '\uD83D\uDCB3',
+    desc: 'Create a full pricing page with FAQ, objection-handling, competitor comparison, and trust signals near the CTA.',
+    tags: ['Pricing Page', 'FAQ', 'Objections', 'Conversion'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Social media management packages' },
+      { id: 'tiers', label: 'Your Pricing Tiers', type: 'text', placeholder: 'e.g. AED 1,500 / AED 3,000 / AED 5,500 per month' },
+      { id: 'audience', label: 'Buyer Type', type: 'text', placeholder: 'e.g. SME business owners in UAE' },
+      { id: 'competitors', label: 'Main Competitors / Alternatives', type: 'text', placeholder: 'e.g. Hiring in-house, freelancers, doing it themselves' },
+      { id: 'objections', label: 'Top 3 Objections You Hear', type: 'text', placeholder: 'e.g. Too expensive, can I pause, what if I don\'t see results?' }
+    ],
+    prompt: (v) => `You are an expert pricing page copywriter. Build a full pricing page for ${v.product}.
+
+PRODUCT: ${v.product}
+PRICING TIERS: ${v.tiers}
+BUYER TYPE: ${v.audience}
+COMPETITORS/ALTERNATIVES: ${v.competitors}
+TOP OBJECTIONS: ${v.objections}
+
+Deliver:
+
+1. PRICING PAGE HEADLINE — not "Our Pricing", something that reframes the investment
+2. TIER NAMES & POSITIONING — rename and position each tier with outcome-focused names
+3. RECOMMENDED BADGE — which tier to highlight and why, plus the badge copy
+4. COMPARISON TABLE — vs competitors/alternatives (${v.competitors}) highlighting where you win
+5. FAQ SECTION — answer the top 5 buying objections including: ${v.objections}. Each answer should be 2–3 sentences max, reassuring, specific
+6. MONEY-BACK GUARANTEE BADGE COPY — the exact wording to reduce risk at the CTA
+7. TRUST SIGNALS BLOCK — 4 trust signals to place near the CTA button
+8. CTA COPY — button text + supporting line beneath it
+
+Make every section work to dissolve objections, not just list features.`,
+    framework: [
+      { title: 'Pricing Page Hierarchy', body: 'Value statement → Tiers (with recommended) → Comparison → FAQ → Guarantee → CTA. Don\'t put price before value. Earn the right to show the number.' },
+      { title: 'The Decoy Middle Tier', body: 'Present 3 tiers. The middle one should be recommended and priced so it feels like obvious value vs the extremes. 60-70% of buyers choose the middle.' },
+      { title: 'FAQ as Objection Handler', body: 'Every FAQ answer = one objection resolved. "Is there a contract?" = fear of commitment. "What if I don\'t see results?" = fear of wasted money. Address the emotion behind the question.' },
+      { title: 'Guarantee Badge Placement', body: 'Place the guarantee badge directly below the CTA button. Never bury it in the FAQ. It\'s most powerful at the moment of decision.' }
+    ]
+  },
+  {
+    id: 'lp-case-study',
+    title: 'Case Study Template',
+    category: 'copy',
+    icon: '\uD83D\uDCCA',
+    desc: 'Write a full case study with challenge/solution/results structure, interview questions, pull quotes and SEO title format.',
+    tags: ['Case Studies', 'Social Proof', 'SEO', 'Content'],
+    fields: [
+      { id: 'client', label: 'Client Name / Type', type: 'text', placeholder: 'e.g. Luna Beauty Studio, Dubai' },
+      { id: 'service', label: 'Service Provided', type: 'text', placeholder: 'e.g. Landing page + Instagram management' },
+      { id: 'challenge', label: 'Challenge / Before State', type: 'text', placeholder: 'e.g. No online presence, zero bookings from social' },
+      { id: 'result', label: 'Key Results Achieved', type: 'text', placeholder: 'e.g. 180% more bookings, 3,200 new followers in 90 days' },
+      { id: 'industry', label: 'Client\'s Industry', type: 'text', placeholder: 'e.g. Beauty & aesthetics, UAE' }
+    ],
+    prompt: (v) => `You are an expert B2B case study writer. Write a full case study for Socinest Global featuring ${v.client}.
+
+CLIENT: ${v.client}
+SERVICE: ${v.service}
+CHALLENGE: ${v.challenge}
+RESULTS: ${v.result}
+INDUSTRY: ${v.industry}
+
+Deliver:
+
+1. SEO-OPTIMISED TITLE — format: "How [Client Type] Achieved [Specific Result] in [Timeframe] with [Service]"
+2. EXECUTIVE SUMMARY — 2 sentences: the before, and the after
+3. THE CHALLENGE — paint the before state vividly (the pain, the frustration, what they'd tried)
+4. THE SOLUTION — exactly what was done and why those choices were made
+5. THE RESULTS — specific numbers in a visual-ready format (3 stat highlights)
+6. PULL QUOTE — a quote the client might actually say about the experience
+7. VISUAL LAYOUT WIREFRAME — text description of how to lay this page out
+8. INTERVIEW QUESTIONS — 8 questions to ask the client to gather this content in a 20-min call
+9. REPURPOSING IDEAS — how to turn this case study into 5 pieces of social content
+
+Make the case study feel like a story, not a report.`,
+    framework: [
+      { title: 'Case Study Story Arc', body: 'Villain (the problem) → Hero (the client) → Guide (your service) → Transformation (the result). People read stories, not reports.' },
+      { title: 'The 3-Stat Rule', body: 'Highlight exactly 3 metrics. More than 3 dilutes impact. Choose: a revenue/conversion metric, a time/efficiency metric, and a growth/reach metric.' },
+      { title: 'Pull Quote Formula', body: '"Before [service], I was [struggling with X]. Now [specific outcome]. I\'d recommend [brand] to any [client type] who wants [goal]." Specific, believable, outcome-focused.' },
+      { title: 'SEO Title Formula', body: '"How [Niche] [Business Type] Got [Specific Result] in [Timeframe]" — targets the exact search a potential client would do when looking for proof you work in their space.' }
+    ]
+  },
+  {
+    id: 'lp-microcopy',
+    title: 'UI Microcopy',
+    category: 'copy',
+    icon: '\uD83D\uDD21',
+    desc: 'Write microcopy for empty states, error messages, tooltips, success confirmations and onboarding hints — in 3 voice variations.',
+    tags: ['Microcopy', 'UX Writing', 'UI', 'Onboarding'],
+    fields: [
+      { id: 'product', label: 'Product / Platform / Page', type: 'text', placeholder: 'e.g. Client booking portal, lead form, landing page' },
+      { id: 'voice', label: 'Brand Voice', type: 'select', options: ['Friendly (warm, helpful colleague)', 'Professional (trusted advisor)', 'Playful (witty, light-hearted)', 'Bold (direct, confident)', 'Luxury (refined, elegant)'] },
+      { id: 'context', label: 'Specific Context / User Action', type: 'text', placeholder: 'e.g. User submits a booking form / User hits a paywall' },
+      { id: 'moments', label: 'Microcopy Moments Needed', type: 'select', options: ['All 5 types (empty state, error, success, tooltip, onboarding)', 'Error messages only', 'Success/confirmation messages only', 'Empty states only', 'Onboarding hints only', 'CTA button + supporting text'] }
+    ],
+    prompt: (v) => `You are a UX copywriter specialising in microcopy. Write microcopy for ${v.product}.
+
+PRODUCT/CONTEXT: ${v.product}
+BRAND VOICE: ${v.voice}
+SPECIFIC CONTEXT: ${v.context}
+MOMENTS NEEDED: ${v.moments}
+
+For each microcopy moment, write 3 voice variations:
+- Friendly version
+- Professional version
+- Playful version (or closest to ${v.voice})
+
+Moments to cover:
+
+1. EMPTY STATE — when there's nothing to show yet (e.g. no bookings, no data)
+2. ERROR MESSAGE — form validation, failed action, wrong input
+3. SUCCESS CONFIRMATION — after form submit, booking confirmed, payment done
+4. TOOLTIP — hover hint for a confusing field or feature
+5. ONBOARDING HINT — first-time user guidance
+
+Rules for each:
+- Never say "Invalid input" — be specific about what went wrong
+- Empty states should inspire action, not just say "nothing here yet"
+- Success messages should celebrate AND confirm what happens next
+- CTAs should use outcome language, never generic verbs
+
+End with: which variation fits ${v.voice} best and why.`,
+    framework: [
+      { title: 'Microcopy as Conversion Tool', body: '"Submit" converts less than "Book My Free Call". Microcopy at action points is part of the conversion path, not decoration. Test button text as rigorously as headlines.' },
+      { title: 'Error Message Rule', body: 'Never blame the user. Never say "Invalid". Say what\'s wrong, what to do instead, and make the fix obvious. "That email doesn\'t look right — try: name@company.com"' },
+      { title: 'Empty State Psychology', body: 'An empty state is a missed conversion opportunity. Instead of "No bookings yet" → "Your first booking is one click away. Set up your calendar →"' },
+      { title: 'The 3-Voice Framework', body: 'Friendly = helpful colleague. Professional = trusted advisor. Playful = witty friend. Most brands need Friendly as base + one of the others as accent.' }
+    ]
+  },
+  {
+    id: 'lp-wireframe',
+    title: 'Homepage Wireframe',
+    category: 'copy',
+    icon: '\uD83D\uDCD0',
+    desc: 'Design a homepage wireframe in text — every section, its purpose, word count, scroll depth targets, and conversion-optimised CTA placement.',
+    tags: ['Wireframe', 'Homepage', 'UX', 'Layout'],
+    fields: [
+      { id: 'product', label: 'Product / Business', type: 'text', placeholder: 'e.g. Socinest Global — digital growth agency' },
+      { id: 'audience', label: 'Primary Audience', type: 'text', placeholder: 'e.g. UAE SME owners needing digital marketing' },
+      { id: 'goal', label: 'Homepage Goal', type: 'select', options: ['Book a consultation / call', 'Submit a contact form', 'View services / pricing', 'Start a free trial', 'Download a lead magnet', 'WhatsApp us directly'] },
+      { id: 'sections', label: 'Sections You Definitely Need', type: 'text', placeholder: 'e.g. Services, testimonials, about, process, contact' },
+      { id: 'traffic', label: 'Primary Traffic Source', type: 'select', options: ['Instagram / social organic', 'Meta paid ads', 'Google SEO', 'Referrals / word of mouth', 'LinkedIn', 'Mixed'] }
+    ],
+    prompt: (v) => `You are a conversion-focused UX strategist. Design a complete homepage wireframe in text for ${v.product}.
+
+PRODUCT: ${v.product}
+AUDIENCE: ${v.audience}
+HOMEPAGE GOAL: ${v.goal}
+REQUIRED SECTIONS: ${v.sections}
+TRAFFIC SOURCE: ${v.traffic}
+
+For every section of the wireframe, specify:
+- SECTION NAME
+- PURPOSE (what job this section does in the conversion journey)
+- CONTENT BRIEF (what goes here — headlines, copy direction, visuals)
+- WORD COUNT TARGET
+- EMOTIONAL JOB (what the visitor should feel after this section)
+- SCROLL DEPTH (approximately where this hits — 0%, 15%, 30% etc.)
+- CTA (if applicable — type and placement)
+- MOBILE NOTE (any changes for mobile layout)
+
+Also deliver:
+- ABOVE THE FOLD PRIORITY: what must be visible without scrolling
+- CTA PLACEMENT MAP: where every CTA appears across the page and why
+- DESKTOP vs MOBILE differences: key layout changes
+- CONVERSION FLOW: the psychological journey from arrival to action
+
+Structure this as a proper wireframe document, not a bullet list.`,
+    framework: [
+      { title: 'Above-the-Fold Rule', body: 'The visitor\'s #1 question is "Am I in the right place?" Your above-the-fold must answer: what you do, who it\'s for, and why you\'re different. Before any scroll.' },
+      { title: 'The Page Flow Formula', body: 'Hero → Problem/Pain → Solution → Proof → Process → Offer → Objection Handling → Final CTA. Each section earns trust for the next.' },
+      { title: 'CTA Placement Strategy', body: 'Place CTAs at: 1) above the fold, 2) after proof section, 3) after pricing/services, 4) footer. Never let a visitor reach the bottom without a clear next step.' },
+      { title: 'Mobile-First Mindset', body: '70%+ of traffic for most businesses is mobile. Design the mobile wireframe first. Desktop is the enhancement, not the default.' }
+    ]
+  },
+
+  // ── MARKETING & SALES ──
+  {
+    id: 'ms-lead-magnet-ideas',
+    title: 'Lead Magnet Ideas',
+    category: 'growth',
+    icon: '\uD83D\uDCA1',
+    desc: 'Generate 10 lead magnet ideas for any niche, ranked by conversion potential with format types and one-line hooks.',
+    tags: ['Lead Gen', 'Lead Magnets', 'Funnel', 'Ideas'],
+    fields: [
+      { id: 'niche', label: 'Niche / Industry', type: 'text', placeholder: 'e.g. Fitness coaches in UAE' },
+      { id: 'product', label: 'Core Product / Service', type: 'text', placeholder: 'e.g. 12-week 1:1 transformation programme' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. Busy professionals 30–45 wanting to lose weight' },
+      { id: 'pain', label: 'Their #1 Pain Point', type: 'text', placeholder: 'e.g. They start programmes but don\'t finish' },
+      { id: 'platform', label: 'Primary Distribution Platform', type: 'select', options: ['Instagram', 'LinkedIn', 'Email list', 'Website / SEO', 'WhatsApp', 'TikTok', 'Facebook'] }
+    ],
+    prompt: (v) => `You are an expert lead generation strategist. Generate 10 lead magnet ideas for ${v.niche}.
+
+NICHE: ${v.niche}
+CORE PRODUCT: ${v.product}
+TARGET AUDIENCE: ${v.audience}
+PAIN POINT: ${v.pain}
+DISTRIBUTION PLATFORM: ${v.platform}
+
+For each of the 10 lead magnet ideas, provide:
+- TITLE (specific, outcome-focused — include a number)
+- FORMAT (PDF checklist / quiz / template / mini-course / swipe file / free tool / etc.)
+- ONE-LINE HOOK (the Instagram caption or ad line that makes them want it NOW)
+- CONVERSION POTENTIAL: High / Medium / Low — with a one-sentence reason
+- TIME TO CREATE: estimated hours
+- THE BRIDGE: how this naturally leads to purchasing ${v.product}
+
+Rank all 10 from highest to lowest conversion potential.
+
+End with: TOP PICK recommendation — which one to build first and exactly why it wins for this audience on ${v.platform}.`,
+    framework: [
+      { title: 'Lead Magnet Conversion Formula', body: 'High-converting lead magnets solve ONE micro-problem in under 30 minutes, create awareness of a bigger problem your paid offer solves, and feel like they\'re worth paying for.' },
+      { title: 'Platform-Specific Formats', body: 'Instagram: visual checklists, swipe files, quizzes. LinkedIn: frameworks, templates, assessments. Email: mini-courses, guides. Each platform has a native format that converts best.' },
+      { title: 'The Natural Bridge', body: 'The lead magnet\'s last page/email should make your paid service the obvious next step. Show them what\'s possible solo, then show what\'s possible with your help.' }
+    ]
+  },
+  {
+    id: 'ms-objection-handler',
+    title: 'Objection Handler',
+    category: 'strategy',
+    icon: '\uD83D\uDEE1',
+    desc: 'List and counter 15 buying objections categorised by type, with one-liner counters and placement guidance for landing pages.',
+    tags: ['Objections', 'Sales Copy', 'Conversion', 'FAQ'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. AED 3,500/month social media management' },
+      { id: 'audience', label: 'Your Buyers', type: 'text', placeholder: 'e.g. Small business owners in GCC' },
+      { id: 'price', label: 'Price Point', type: 'text', placeholder: 'e.g. AED 3,500/month or AED 15,000 one-off' },
+      { id: 'topObjections', label: 'Top Objections You Already Hear', type: 'textarea', placeholder: 'e.g. "It\'s too expensive", "I need to ask my partner", "I\'ve tried this before and it didn\'t work"', full: true }
+    ],
+    prompt: (v) => `You are an expert sales copywriter. Build a complete objection-handling system for ${v.product}.
+
+PRODUCT: ${v.product}
+BUYER TYPE: ${v.audience}
+PRICE POINT: ${v.price}
+KNOWN OBJECTIONS: ${v.topObjections}
+
+List 15 objections buyers have before purchasing. For each:
+- OBJECTION (the exact words they say or think)
+- CATEGORY: Price / Trust / Timing / Competition / Authority
+- ONE-LINER COUNTER (the exact sentence to use in sales copy or conversation)
+- WHERE TO PLACE IT on the landing page (Hero / Features / Pricing / Near CTA / FAQ)
+- THE PSYCHOLOGY behind why this objection comes up
+
+After the 15:
+1. TOP 5 PRIORITY OBJECTIONS — the ones that kill the most sales for ${v.audience}
+2. FAQ COPY — write the FAQ answers for the top 5, ready to paste on the pricing/sales page
+3. SALES CONVERSATION SCRIPT — how to handle "too expensive" and "I need to think about it" in a live conversation or DM
+
+Every counter must feel like help, not a hard sell.`,
+    framework: [
+      { title: 'The 5 Objection Categories', body: 'Price ("too expensive") → reframe as ROI. Trust ("will it work for me?") → specific proof. Timing ("not right now") → urgency + cost of waiting. Competition ("I\'ll shop around") → differentiation. Authority ("need to check with partner") → give them tools to sell internally.' },
+      { title: 'Counter Formula', body: '"I understand that. [Validate]. Here\'s the thing — [reframe]. [Specific proof]. [Low-risk ask]." Never argue. Never dismiss. Always lead with empathy.' },
+      { title: 'Objection Placement Map', body: 'Tackle price near the pricing section. Tackle trust near testimonials. Tackle commitment near the CTA. Match the objection to where it naturally arises in the scroll journey.' }
+    ]
+  },
+  {
+    id: 'ms-viral-loop',
+    title: 'Viral Loop Strategy',
+    category: 'growth',
+    icon: '\uD83D\uDD04',
+    desc: 'Design a referral and viral loop strategy so each user brings 1.5 new users — with referral triggers, incentive structures and K-factor projections.',
+    tags: ['Viral Growth', 'Referrals', 'Growth Loops', 'K-Factor'],
+    fields: [
+      { id: 'product', label: 'Product / Service', type: 'text', placeholder: 'e.g. Social media management subscription' },
+      { id: 'audience', label: 'Current Customer Base', type: 'text', placeholder: 'e.g. 30 clients, beauty & fitness businesses in UAE' },
+      { id: 'avgValue', label: 'Average Client Value', type: 'text', placeholder: 'e.g. AED 3,500/month, stays 8 months average' },
+      { id: 'incentiveBudget', label: 'Incentive Budget Per Referral', type: 'text', placeholder: 'e.g. AED 500 credit or 1 month free' },
+      { id: 'touchpoints', label: 'Customer Touchpoints Where Referrals Are Natural', type: 'text', placeholder: 'e.g. After a good month\'s results, after a launch, when they share our work on their page' }
+    ],
+    prompt: (v) => `You are a growth strategist. Design a viral loop and referral system for ${v.product}.
+
+PRODUCT: ${v.product}
+CURRENT CUSTOMER BASE: ${v.audience}
+AVERAGE CLIENT VALUE: ${v.avgValue}
+INCENTIVE BUDGET: ${v.incentiveBudget}
+NATURAL REFERRAL TOUCHPOINTS: ${v.touchpoints}
+
+Deliver:
+
+1. VIRAL LOOP DESIGN — map how each customer naturally brings in the next customer (the loop mechanism)
+2. REFERRAL TRIGGER POINTS — exactly when and how to ask for referrals (specific moments in the client journey)
+3. INCENTIVE STRUCTURE — tiered rewards for referrers (1 referral, 3 referrals, 5+ referrals)
+4. TRACKING IMPLEMENTATION — how to track referrals without complex software
+5. REFERRAL EMAIL/DM TEMPLATES — word-for-word messages clients can forward to their network
+6. SOCIAL SHARE COPY — 3 captions clients can post to bring referrals organically
+7. K-FACTOR PROJECTION — realistic K-factor estimate and what it means in 6-month growth numbers
+8. MILESTONE BADGES — gamification rewards to motivate ongoing referral activity
+
+Make the referral ask feel natural, not pushy. Clients refer when they're proud, not pressured.`,
+    framework: [
+      { title: 'K-Factor Formula', body: 'K-factor = (invitations sent per user) × (conversion rate of invitations). K > 1 = viral growth. K = 0.5 with 100 clients = 50 new clients per cycle. Aim for K = 0.3+ as a starting target.' },
+      { title: 'The Referral Timing Rule', body: 'Ask for referrals at peak happiness: right after results, right after a compliment, right after they share your work publicly. Never ask during onboarding or when they\'re frustrated.' },
+      { title: 'Incentive Design', body: 'Incentivise both sides: referrer gets credit/discount, new client gets a special offer. Double-sided incentives increase referral rates by 3x vs single-sided.' }
+    ]
+  },
+  {
+    id: 'ms-referral-program',
+    title: 'Referral Programme',
+    category: 'growth',
+    icon: '\uD83E\uDD1D',
+    desc: 'Build a full referral programme with incentive tiers, email templates, viral share copy, milestone badges and projected ROI per referral.',
+    tags: ['Referrals', 'Programme Design', 'ROI', 'Retention'],
+    fields: [
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'product', label: 'Product / Service Being Referred', type: 'text', placeholder: 'e.g. Social media management packages' },
+      { id: 'clv', label: 'Customer Lifetime Value', type: 'text', placeholder: 'e.g. AED 28,000 average (AED 3,500 × 8 months)' },
+      { id: 'incentive', label: 'Incentive You Can Offer', type: 'text', placeholder: 'e.g. AED 500 account credit or 1 free month' },
+      { id: 'audience', label: 'Who Will Be Referring', type: 'text', placeholder: 'e.g. Current clients who are business owners' }
+    ],
+    prompt: (v) => `You are an expert in referral programme design. Build a complete referral programme for ${v.business}.
+
+BUSINESS: ${v.business}
+PRODUCT: ${v.product}
+CUSTOMER LIFETIME VALUE: ${v.clv}
+INCENTIVE AVAILABLE: ${v.incentive}
+REFERRER PROFILE: ${v.audience}
+
+Deliver:
+
+1. PROGRAMME NAME — a compelling name for the referral programme (not "Refer a Friend")
+2. TIERED REWARD STRUCTURE — 3 tiers based on number of referrals (include specific rewards + milestone badges)
+3. HOW IT WORKS — a 3-step explanation simple enough to put on a landing page
+4. EMAIL TEMPLATE (send to current clients launching the programme)
+5. REFERRAL MESSAGE TEMPLATES — 3 messages the referrer can forward to prospects: WhatsApp, Instagram DM, Email
+6. VIRAL SHARE COPY — 2 Instagram captions + 1 LinkedIn post the client can use to refer publicly
+7. ROI PROJECTION TABLE — for 5 / 10 / 20 successful referrals: cost of incentives vs revenue generated
+8. PROGRAMME LANDING PAGE COPY — headline, how it works, rewards, CTA
+
+Make the programme feel exclusive and rewarding, not transactional.`,
+    framework: [
+      { title: 'Programme Naming', body: 'Not "Refer a Friend Programme". Something brand-aligned: "The Socinest Circle", "Partner & Grow", "Inner Circle Rewards". Names that feel like an exclusive club convert better.' },
+      { title: 'Tiered Reward Logic', body: 'Tier 1 (1 referral): small reward — gets them started. Tier 2 (3 referrals): meaningful reward — activates loss aversion (don\'t lose progress). Tier 3 (5+): premium reward + status recognition.' },
+      { title: 'ROI Calculation', body: 'If CLV = AED 28,000 and incentive = AED 500 per referral, your CAC via referral = AED 500. That\'s often 5–10x cheaper than paid ads. Referral programmes are almost always the highest-ROI growth channel.' }
+    ]
+  },
+
+  // ── SEO & GROWTH ──
+  {
+    id: 'seo-content-brief',
+    title: 'SEO Content Brief',
+    category: 'seo',
+    icon: '\uD83D\uDD0D',
+    desc: 'Generate a comprehensive content brief for any keyword — with search intent, H2/H3 structure, competitor gaps, meta description, and schema recommendations.',
+    tags: ['SEO', 'Content Brief', 'Keywords', 'Schema'],
+    fields: [
+      { id: 'keyword', label: 'Target Keyword', type: 'text', placeholder: 'e.g. social media management Dubai' },
+      { id: 'business', label: 'Your Business / Website', type: 'text', placeholder: 'e.g. Socinest Global — digital agency' },
+      { id: 'intent', label: 'Likely Search Intent', type: 'select', options: ['Informational (learning about topic)', 'Commercial (comparing options)', 'Transactional (ready to buy)', 'Navigational (looking for specific brand)', 'Mixed intent'] },
+      { id: 'competitors', label: 'Competitor URLs to Beat (optional)', type: 'text', placeholder: 'e.g. competitor1.com, competitor2.com' },
+      { id: 'wordCount', label: 'Target Word Count', type: 'select', options: ['800–1,200 words (short-form)', '1,500–2,500 words (standard)', '2,500–4,000 words (comprehensive)', '4,000+ words (pillar page)'] }
+    ],
+    prompt: (v) => `You are an expert SEO strategist. Generate a comprehensive content brief for the keyword "${v.keyword}".
+
+KEYWORD: ${v.keyword}
+WEBSITE/BUSINESS: ${v.business}
+SEARCH INTENT: ${v.intent}
+COMPETITORS TO BEAT: ${v.competitors || 'Not specified — infer from keyword'}
+TARGET WORD COUNT: ${v.wordCount}
+
+Deliver a full content brief:
+
+1. SEARCH INTENT ANALYSIS — what is the searcher trying to achieve? What do they need to see to feel satisfied?
+2. TITLE TAG — SEO-optimised, under 60 characters, includes keyword
+3. META DESCRIPTION — under 155 characters, includes keyword, has a clear CTA
+4. H1 HEADLINE — different from title tag, compelling for human readers
+5. H2/H3 STRUCTURE — full outline of sections with estimated word counts per section
+6. COMPETITOR CONTENT GAPS — 5 topics or angles competitors likely miss that you can own
+7. INTERNAL LINKING TARGETS — 3 pages on ${v.business} to link from this article
+8. FEATURED SNIPPET STRATEGY — is there a snippet opportunity? What format (list, table, definition)?
+9. SCHEMA MARKUP RECOMMENDATION — which schema type(s) to add (FAQ, Article, HowTo, etc.)
+10. SEMANTIC KEYWORDS — 10 related terms to weave naturally into the content
+
+End with: ONE THING that will separate this content from every other result for "${v.keyword}".`,
+    framework: [
+      { title: 'Search Intent First', body: 'Get the intent wrong and your content won\'t rank regardless of quality. Informational → educate. Commercial → compare and recommend. Transactional → sell and convert. Check the SERP to confirm.' },
+      { title: 'The Content Gap Opportunity', body: 'Don\'t write what\'s already ranking — add what\'s missing. Check the top 5 results: what questions do they NOT answer? That\'s your differentiation.' },
+      { title: 'Featured Snippet Formula', body: 'For definitions: first paragraph should directly answer the keyword question in 40–60 words. For lists: use clean H2/H3 headers. For tables: use proper HTML table markup. Google pulls these directly.' },
+      { title: 'Schema Markup ROI', body: 'FAQ schema = more SERP real estate. HowTo schema = rich results. Article schema = better indexing. Takes 30 minutes to add, can double click-through rate.' }
+    ]
+  },
+  {
+    id: 'seo-competitor-analysis',
+    title: 'Competitor SEO Analysis',
+    category: 'seo',
+    icon: '\uD83D\uDD0E',
+    desc: 'Analyse competitor pages ranking for your keyword — identify content gaps, backlink opportunities, and angles they missed.',
+    tags: ['Competitor Analysis', 'Content Gaps', 'Backlinks', 'SERP'],
+    fields: [
+      { id: 'keyword', label: 'Target Keyword', type: 'text', placeholder: 'e.g. property management company Dubai' },
+      { id: 'yourSite', label: 'Your Website', type: 'text', placeholder: 'e.g. socinestglobal.com' },
+      { id: 'competitors', label: 'Competitor URLs (paste 3–5)', type: 'textarea', placeholder: 'e.g.\ncompetitor1.com/page\ncompetitor2.com/page\ncompetitor3.com/page', full: true },
+      { id: 'goal', label: 'Your Goal', type: 'select', options: ['Outrank them with a better article', 'Find backlink opportunities', 'Identify content gaps', 'Build a content cluster to dominate the topic', 'All of the above'] }
+    ],
+    prompt: (v) => `You are an expert SEO analyst. Conduct a competitor analysis for the keyword "${v.keyword}" targeting ${v.yourSite}.
+
+KEYWORD: ${v.keyword}
+YOUR SITE: ${v.yourSite}
+COMPETITOR PAGES: ${v.competitors}
+GOAL: ${v.goal}
+
+Deliver:
+
+1. COMPETITOR CONTENT SUMMARY — for each competitor URL, summarise: their angle, approximate word count, content structure, and what they do well
+2. CONTENT GAPS — 5 specific subtopics or questions none of the competitors fully address (these are your opportunities)
+3. UNIQUE ANGLES — 3 angles ${v.yourSite} could take that would differentiate from all competitors
+4. BACKLINK OPPORTUNITIES — types of sites that likely link to these competitors and how to get similar links
+5. WORD COUNT vs QUALITY ANALYSIS — are they winning with length or depth? What does ${v.yourSite} need to match/beat?
+6. CONTENT FRESHNESS GAPS — topics that are covered but outdated (opportunity to publish fresher content)
+7. FEATURED SNIPPET GAPS — any snippet opportunities competitors are missing
+8. ACTION PLAN — a prioritised 3-step plan to outrank these results within 90 days
+
+Be specific and actionable. Generic "write better content" advice is not acceptable.`,
+    framework: [
+      { title: 'Content Gap Analysis Process', body: '1. List all subtopics competitors cover. 2. List what the search intent demands but they don\'t provide. 3. List questions from "People Also Ask" they don\'t answer. These gaps are your ranking opportunities.' },
+      { title: 'Backlink Prospecting', body: 'Find who links to your competitors using Ahrefs/Moz. These sites are pre-qualified — they already link to content in your space. Reach out with a better version of what they already linked to.' },
+      { title: 'The Skyscraper Approach', body: 'Find the best-ranking piece. Make something 10x more useful: more depth, better structure, fresher data, original research, better visuals. Then tell the people who linked to the original.' }
+    ]
+  },
+  {
+    id: 'seo-programmatic',
+    title: 'Programmatic SEO Strategy',
+    category: 'seo',
+    icon: '⚙',
+    desc: 'Build a programmatic SEO strategy that generates 100+ pages from a data source — with URL structure, templates, internal linking, and thin content safeguards.',
+    tags: ['Programmatic SEO', 'Scale', 'Automation', 'Content Strategy'],
+    fields: [
+      { id: 'business', label: 'Business / Website', type: 'text', placeholder: 'e.g. Socinest Global — services across UAE cities' },
+      { id: 'dataSource', label: 'Data Source for Pages', type: 'text', placeholder: 'e.g. 200 UAE cities × 8 services = 1,600 location pages' },
+      { id: 'template', label: 'Page Template Type', type: 'select', options: ['Location + service pages (e.g. "Social media Dubai")', 'Industry + service pages (e.g. "SEO for restaurants")', 'Comparison pages (X vs Y)', 'Best-of / directory pages', 'FAQ/how-to pages at scale', 'Product/service category pages'] },
+      { id: 'volume', label: 'Target Number of Pages', type: 'select', options: ['50–100 pages', '100–500 pages', '500–2,000 pages', '2,000+ pages'] },
+      { id: 'concern', label: 'Biggest Concern', type: 'select', options: ['Thin content penalties', 'Crawl budget management', 'Keyword cannibalization', 'Duplicate content issues', 'All of the above'] }
+    ],
+    prompt: (v) => `You are an expert in programmatic SEO. Design a full programmatic strategy for ${v.business}.
+
+BUSINESS: ${v.business}
+DATA SOURCE: ${v.dataSource}
+PAGE TEMPLATE TYPE: ${v.template}
+TARGET VOLUME: ${v.volume}
+MAIN CONCERN: ${v.concern}
+
+Deliver:
+
+1. URL STRUCTURE — the exact URL format to use (with examples)
+2. PAGE TEMPLATE BLUEPRINT — the section structure for each generated page to ensure unique value
+3. CONTENT UNIQUENESS STRATEGY — how to make each page unique enough to avoid thin content penalties
+4. INTERNAL LINKING PLAN — how programmatic pages link to each other and to pillar pages
+5. CRAWL BUDGET MANAGEMENT — how to ensure Google crawls and indexes the important pages first
+6. CANONICAL STRATEGY — how to handle near-duplicate pages
+7. QUALITY THRESHOLD — the minimum content requirements each page must meet
+8. LAUNCH PHASING — recommended order to launch pages (which to prioritise first)
+9. MONITORING PLAN — what to track weekly to catch issues early
+
+Address the ${v.concern} concern specifically with a practical solution.`,
+    framework: [
+      { title: 'Programmatic SEO When to Use', body: 'Use when you have structured data that maps to real searches: [service] in [city], [X] vs [Y], best [thing] for [use case]. Don\'t force it — only works when the search demand exists for each permutation.' },
+      { title: 'Thin Content Prevention', body: 'Each page must have unique data, unique local context, or unique angle. A page that\'s 90% identical to another will be deindexed. Add: local stats, local testimonials, local case studies, or unique FAQ per location.' },
+      { title: 'Crawl Budget Allocation', body: 'Use robots.txt to block low-value pages. Use sitemaps with priority tags for high-value pages. Launch in batches of 50–100 pages and monitor indexing rate before scaling.' }
+    ]
+  },
+  {
+    id: 'seo-ranking-landing-page',
+    title: 'SEO Landing Page',
+    category: 'seo',
+    icon: '\uD83C\uDFC6',
+    desc: 'Write a landing page that ranks for a keyword AND converts at 5%+ — with above-fold copy, FAQ schema, CTA strategy, and mobile-first layout notes.',
+    tags: ['SEO', 'Landing Page', 'Conversion', 'Dual-Purpose'],
+    fields: [
+      { id: 'keyword', label: 'Target Keyword', type: 'text', placeholder: 'e.g. social media management agency Dubai' },
+      { id: 'business', label: 'Business Name', type: 'text', placeholder: 'e.g. Socinest Global' },
+      { id: 'offer', label: 'Offer / CTA on This Page', type: 'text', placeholder: 'e.g. Free 30-min strategy call' },
+      { id: 'audience', label: 'Target Audience', type: 'text', placeholder: 'e.g. UAE business owners looking for a social media agency' },
+      { id: 'proof', label: 'Key Proof Points', type: 'text', placeholder: 'e.g. 50+ clients, average 3x engagement, 4.9★ Google' }
+    ],
+    prompt: (v) => `You are an expert at writing landing pages that rank AND convert. Write the full landing page for "${v.keyword}" for ${v.business}.
+
+KEYWORD: ${v.keyword}
+BUSINESS: ${v.business}
+OFFER/CTA: ${v.offer}
+AUDIENCE: ${v.audience}
+PROOF POINTS: ${v.proof}
+
+This page must achieve two goals: rank on page 1 for "${v.keyword}" AND convert at 5%+.
+
+Deliver the complete page:
+
+1. TITLE TAG (under 60 chars, keyword-first)
+2. META DESCRIPTION (under 155 chars, keyword included, CTA)
+3. H1 HEADLINE (includes keyword naturally)
+4. ABOVE-THE-FOLD COPY (headline + subheadline + CTA + social proof line)
+5. SERVICES/BENEFITS SECTION (H2 headers with keyword variations, 3–5 sections)
+6. SOCIAL PROOF SECTION (testimonial copy + stats)
+7. PROCESS SECTION (how it works, 3 steps)
+8. FAQ SECTION (5 questions optimised for FAQ schema — answer format suitable for featured snippet)
+9. FINAL CTA SECTION (urgency + offer + button text)
+10. MOBILE-FIRST LAYOUT NOTES — how to adapt for mobile
+
+Include: semantic keywords to weave in, internal linking suggestions, and schema markup recommendations.`,
+    framework: [
+      { title: 'The Dual-Purpose Page Formula', body: 'SEO goal = satisfy search intent fully. Conversion goal = guide visitor to one action. These are not in conflict: a page that fully answers the query AND makes a compelling offer wins both.' },
+      { title: 'Keyword Placement Rules', body: 'Keyword in: Title tag, H1, first 100 words, one H2, image alt text, meta description, URL slug. Don\'t force it elsewhere — write naturally and use semantic variations.' },
+      { title: 'FAQ Schema = Double SERP Real Estate', body: 'A page with FAQ schema can appear as the main result AND as 4 expandable FAQ snippets below. That\'s potentially 40%+ of the first page. Always add FAQ schema to service pages.' },
+      { title: '5% Conversion Benchmark', body: 'Industry average is 2–3%. 5%+ requires: clear offer, strong proof, zero confusion about next step, mobile-optimised CTA, and trust signals above the fold.' }
+    ]
+  },
+  {
+    id: 'seo-site-audit',
+    title: 'SEO Site Audit',
+    category: 'seo',
+    icon: '\uD83D\uDD2C',
+    desc: 'Audit a site for technical SEO issues — crawlability, internal links, orphan pages, keyword cannibalization, Core Web Vitals — with prioritised fix list.',
+    tags: ['Technical SEO', 'Site Audit', 'Core Web Vitals', 'Crawlability'],
+    fields: [
+      { id: 'url', label: 'Website URL', type: 'text', placeholder: 'e.g. socinestglobal.com' },
+      { id: 'size', label: 'Approximate Site Size', type: 'select', options: ['Small (under 50 pages)', 'Medium (50–200 pages)', 'Large (200–1,000 pages)', 'Enterprise (1,000+ pages)'] },
+      { id: 'platform', label: 'CMS / Platform', type: 'select', options: ['WordPress', 'Webflow', 'Shopify', 'Wix', 'Squarespace', 'Custom / React', 'Lovable / other AI builder', 'Unknown'] },
+      { id: 'issue', label: 'Suspected Main Issue', type: 'select', options: ['Not ranking despite good content', 'Slow page speed / Core Web Vitals', 'Pages not being indexed', 'Keyword cannibalization', 'Thin or duplicate content', 'Not sure — full audit needed'] },
+      { id: 'goal', label: 'Main SEO Goal', type: 'text', placeholder: 'e.g. Rank for 10 local service keywords in 90 days' }
+    ],
+    prompt: (v) => `You are an expert technical SEO auditor. Conduct a comprehensive SEO audit framework for ${v.url}.
+
+WEBSITE: ${v.url}
+SITE SIZE: ${v.size}
+PLATFORM: ${v.platform}
+SUSPECTED ISSUE: ${v.issue}
+SEO GOAL: ${v.goal}
+
+Deliver a full audit checklist and action plan:
+
+1. CRAWLABILITY AUDIT — robots.txt, sitemap, noindex tags, redirect chains, broken links
+2. INDEXATION CHECK — how to identify pages not indexed and why they might be excluded
+3. INTERNAL LINKING AUDIT — identify orphan pages, silo structure issues, and link equity gaps
+4. KEYWORD CANNIBALIZATION SCAN — how to identify and fix pages competing for the same keyword
+5. CORE WEB VITALS CHECKLIST — LCP, CLS, INP: what to check on ${v.platform} and how to fix common issues
+6. ON-PAGE SEO CHECKLIST — title tags, meta descriptions, H1s, image alt text, schema
+7. CONTENT QUALITY AUDIT — thin content identification, duplicate content, content gap analysis
+8. PRIORITISED FIX LIST — rank all issues by: Traffic Impact (High/Med/Low) × Effort (Hard/Medium/Easy)
+9. QUICK WINS — 5 fixes that take under 2 hours and will have measurable impact within 30 days
+
+Platform-specific notes for ${v.platform} where relevant. Address the ${v.issue} concern specifically.`,
+    framework: [
+      { title: 'SEO Audit Priority Matrix', body: 'Fix: High impact + Low effort first (quick wins). Then: High impact + High effort (strategic). Deprioritise: Low impact + High effort. Always address crawlability before content — Google must find it before it can rank it.' },
+      { title: 'Cannibalization Detection', body: 'Search "site:yourdomain.com keyword" — if 3+ pages appear, you have cannibalization. Consolidate the weaker pages into the strongest one with 301 redirects.' },
+      { title: 'Core Web Vitals Quick Fix', body: 'LCP (largest content paint): optimise hero image. CLS (layout shift): set explicit dimensions on images. INP (interaction): reduce JavaScript bloat. These three fixes cover 80% of CWV issues on most sites.' }
+    ]
+  },
+  {
+    id: 'seo-topical-authority',
+    title: 'Topical Authority Map',
+    category: 'seo',
+    icon: '\uD83D\uDCCD',
+    desc: 'Build a topical authority map for any niche — 50 keywords grouped into clusters with pillar pages, supporting articles, and a 6-month publishing roadmap.',
+    tags: ['Topical Authority', 'Content Clusters', 'Keyword Research', 'Roadmap'],
+    fields: [
+      { id: 'niche', label: 'Niche / Topic to Own', type: 'text', placeholder: 'e.g. Social media marketing in UAE' },
+      { id: 'business', label: 'Your Business', type: 'text', placeholder: 'e.g. Socinest Global — digital agency' },
+      { id: 'domain', label: 'Domain Authority Level', type: 'select', options: ['New site (DA 0–10)', 'Early stage (DA 10–20)', 'Growing (DA 20–35)', 'Established (DA 35–50)', 'Authority (DA 50+)'] },
+      { id: 'contentBandwidth', label: 'Content Publishing Bandwidth', type: 'select', options: ['1 article/month', '2–4 articles/month', '1 article/week', '2–3 articles/week', 'Daily publishing'] },
+      { id: 'competitors', label: 'Who Owns This Topic Now', type: 'text', placeholder: 'e.g. Hootsuite, Sprout Social, local agencies' }
+    ],
+    prompt: (v) => `You are an expert in topical SEO authority. Build a topical authority map for ${v.niche} targeting ${v.business}.
+
+NICHE: ${v.niche}
+BUSINESS: ${v.business}
+DOMAIN AUTHORITY: ${v.domain}
+PUBLISHING BANDWIDTH: ${v.contentBandwidth}
+CURRENT TOPIC OWNERS: ${v.competitors}
+
+Deliver:
+
+1. TOPICAL MAP OVERVIEW — the 5–7 main subtopics that make up "${v.niche}" (these become your content clusters)
+2. PILLAR PAGES (1 per subtopic) — title, target keyword, search volume estimate, content brief summary
+3. SUPPORTING ARTICLES (5–8 per pillar) — title, target keyword, search intent, which pillar it supports
+4. KEYWORD TABLE — 50 keywords total, organised by cluster, with: keyword, search intent, difficulty (Low/Med/High), content type
+5. INTERNAL LINKING STRUCTURE — how pillar pages and supporting articles link to each other
+6. 6-MONTH PUBLISHING ROADMAP — which content to publish in which order, based on ${v.domain} and ${v.contentBandwidth}
+7. QUICK WIN KEYWORDS — 5 keywords with low difficulty that ${v.domain} can realistically rank for within 60 days
+8. COMPETITOR GAP — 3 subtopics ${v.competitors} covers poorly that you can own quickly
+
+Format the keyword table clearly. Prioritise actionability over comprehensiveness.`,
+    framework: [
+      { title: 'Topical Authority vs Backlinks', body: 'Google increasingly rewards sites that comprehensively cover a topic over sites with just backlinks. Publishing 20 deeply connected articles on one topic beats 20 unrelated articles every time.' },
+      { title: 'Cluster Architecture', body: 'One pillar page (broad, comprehensive, 2,000+ words) → 5–8 supporting articles (specific, 800–1,500 words) → all link back to the pillar. This structure signals topical expertise to Google.' },
+      { title: 'Publishing Order Strategy', body: 'New sites: start with lowest-difficulty keywords to build early wins. Then use that momentum to tackle harder keywords. Never start with the most competitive keyword — you\'ll get buried and lose motivation.' }
+    ]
+  }
+];
+
+let activeSkill = null;
+let currentFilter = 'all';
+
+function renderGrid(filter = 'all', search = '') {
+  const grid = document.getElementById('skillsGrid');
+  const filtered = SKILLS.filter(s => {
+    const matchCat = filter === 'all' || s.category === filter;
+    const matchSearch = !search || s.title.toLowerCase().includes(search) || s.desc.toLowerCase().includes(search) || s.tags.some(t => t.toLowerCase().includes(search));
+    return matchCat && matchSearch;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="no-results"><span>🔍</span><p>No skills found. Try a different search.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(s => `
+    <div class="skill-card" data-id="${s.id}">
+      <div class="card-header">
+        <div class="card-icon icon-${s.category}">${s.icon}</div>
+        <span class="card-category cat-${s.category}">${catLabel(s.category)}</span>
+      </div>
+      <div class="card-title">${s.title}</div>
+      <div class="card-desc">${s.desc}</div>
+      <div class="card-tags">${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      <div class="card-actions">
+        <button class="btn-generate" onclick="openModal('${s.id}', 'generate')">⚡ Generate Prompt</button>
+        <button class="btn-extract" onclick="openModal('${s.id}', 'extract')">📋 Extract</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function catLabel(cat) {
+  const map = { copy: 'Copywriting', social: 'Social Media', growth: 'Growth', strategy: 'Strategy', outreach: 'Outreach', seo: 'SEO & Growth' };
+  return map[cat] || cat;
+}
+
+function openModal(id, tab = 'generate') {
+  activeSkill = SKILLS.find(s => s.id === id);
+  if (!activeSkill) return;
+
+  document.getElementById('modalTitle').textContent = activeSkill.title;
+  document.getElementById('modalSubtitle').textContent = activeSkill.desc.substring(0, 80) + '…';
+
+  // Build form
+  const form = document.getElementById('formFields');
+  form.innerHTML = '';
+  let rowHtml = '';
+  let inRow = false;
+  activeSkill.fields.forEach((f, i) => {
+    if (f.full) {
+      if (inRow) { form.innerHTML += `<div class="form-row">${rowHtml}</div>`; rowHtml = ''; inRow = false; }
+      form.innerHTML += `<div class="form-row full"><div class="form-group">${fieldHtml(f)}</div></div>`;
+    } else {
+      rowHtml += `<div class="form-group">${fieldHtml(f)}</div>`;
+      if (rowHtml.split('form-group').length - 1 >= 2 || i === activeSkill.fields.length - 1) {
+        form.innerHTML += `<div class="form-row">${rowHtml}</div>`;
+        rowHtml = ''; inRow = false;
+      } else { inRow = true; }
+    }
+  });
+
+  // Build framework
+  const fw = document.getElementById('frameworkContent');
+  fw.innerHTML = activeSkill.framework.map(f => `
+    <div class="framework-block">
+      <h4>${f.title}</h4>
+      <p>${f.body}</p>
+    </div>
+  `).join('');
+
+  // Hide prompt output
+  document.getElementById('promptOutputWrap').style.display = 'none';
+
+  // Switch to correct tab
+  switchTab(tab);
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function fieldHtml(f) {
+  if (f.type === 'select') {
+    return `<label>${f.label}</label><select id="${f.id}"><option value="">Select…</option>${f.options.map(o => `<option value="${o}">${o}</option>`).join('')}</select>`;
+  }
+  if (f.type === 'textarea') {
+    return `<label>${f.label}</label><textarea id="${f.id}" placeholder="${f.placeholder || ''}"></textarea>`;
+  }
+  return `<label>${f.label}</label><input type="text" id="${f.id}" placeholder="${f.placeholder || ''}">`;
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && name === 'generate') || (i === 1 && name === 'extract'));
+  });
+  document.getElementById('tab-generate').classList.toggle('active', name === 'generate');
+  document.getElementById('tab-extract').classList.toggle('active', name === 'extract');
+}
+
+function buildPrompt() {
+  if (!activeSkill) return;
+  const vals = {};
+  activeSkill.fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    vals[f.id] = el ? el.value || `[${f.label}]` : `[${f.label}]`;
+  });
+  const prompt = activeSkill.prompt(vals);
+  document.getElementById('promptOutput').textContent = prompt;
+  document.getElementById('promptOutputWrap').style.display = 'block';
+  document.getElementById('promptOutputWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyToClipboard(text, onSuccess) {
+  // Try modern clipboard API first
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text, onSuccess));
+  } else {
+    fallbackCopy(text, onSuccess);
+  }
+}
+
+function fallbackCopy(text, onSuccess) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    if (onSuccess) onSuccess();
+  } catch(e) {
+    showToast('Press Ctrl+A then Ctrl+C to copy');
+  }
+  document.body.removeChild(ta);
+}
+
+function copyPrompt() {
+  const text = document.getElementById('promptOutput').textContent;
+  copyToClipboard(text, () => {
+    const btn = document.getElementById('copyPromptBtn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    showToast('Prompt copied to clipboard!');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyFramework() {
+  if (!activeSkill) return;
+  const text = activeSkill.framework.map(f => `${f.title}\n${f.body}`).join('\n\n');
+  copyToClipboard(text, () => showToast('Framework copied!'));
+}
+
+function downloadFramework() {
+  if (!activeSkill) return;
+  const text = `SOCINEST GLOBAL — ${activeSkill.title.toUpperCase()} FRAMEWORK\n${'='.repeat(60)}\n\n` +
+    activeSkill.framework.map(f => `${f.title}\n${'-'.repeat(40)}\n${f.body}`).join('\n\n') +
+    '\n\n— socinestglobal.com';
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `socinest-${activeSkill.id}-framework.txt`; a.click();
+  showToast('Framework downloaded!');
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.cat;
+    renderGrid(currentFilter, document.getElementById('searchInput').value.toLowerCase().trim());
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  renderGrid(currentFilter, e.target.value.toLowerCase().trim());
+});
+
+// Close modal on overlay click
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+
+// Init
+renderGrid();
+</script>
+</body>
+</html>
